@@ -15,13 +15,34 @@ ACSV={"B19013":{"B19013_001E":"Estimate!!Median household income"},
 def fake(url, params=None):
     params=params or {}
     if "tigerweb" in url:
-        if url.endswith("MapServer"): return {"layers":[{"id":8,"name":"Census Tracts"},{"id":28,"name":"Incorporated Places"}]}
+        if url.endswith("MapServer"): return {"layers":[{"id":8,"name":"Census Tracts"},{"id":28,"name":"Incorporated Places"},{"id":12,"name":"Census Blocks"}]}
+        if "/12/query" in url:
+            return {"type":"FeatureCollection","features":[
+              {"type":"Feature","properties":{"GEOID":"051190040051000"},"geometry":{"type":"Polygon","coordinates":[[[-92.199,34.601],[-92.195,34.601],[-92.195,34.604],[-92.199,34.601]]]}},
+              {"type":"Feature","properties":{"GEOID":"051190040072000"},"geometry":{"type":"Polygon","coordinates":[[[-92.199,34.6005],[-92.196,34.6005],[-92.196,34.602],[-92.199,34.6005]]]}},
+              {"type":"Feature","properties":{"GEOID":"051190040059999"},"geometry":{"type":"Polygon","coordinates":[[[-80,30],[-80.1,30],[-80.1,30.1],[-80,30]]]}}]}
+        if "/8/query" in url and params.get("geometry"):
+            return {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"GEOID":"05119004005","NAME":"Census Tract 40.05"},"geometry":{"type":"Polygon","coordinates":[[[-92.3,34.5],[-92.1,34.5],[-92.1,34.7],[-92.3,34.5]]]}}]}
         return {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"NAME":"X"},"geometry":{"type":"Polygon","coordinates":[[[-92.2,34.6],[-92.19,34.6],[-92.19,34.61],[-92.2,34.6]]]}}]}
+    if url.endswith("2020/dec/pl/groups.json"):
+        return {"groups":[{"name":"P1","description":"RACE"},{"name":"P5","description":"GROUP QUARTERS POPULATION BY MAJOR GROUP QUARTERS TYPE"},{"name":"H1","description":"OCCUPANCY STATUS"}]}
     if url.endswith("groups.json"): return T.GROUPS
+    if "dec/pl/groups/" in url:
+        PL={"P1":{"P1_001N":" !!Total:"},"P5":{"P5_001N":" !!Total:"},"H1":{"H1_001N":" !!Total:","H1_002N":" !!Total:!!Occupied"}}
+        return {"variables":{n:{"label":l} for n,l in PL[url.rsplit("/",1)[1][:-5]].items()}}
     if "/groups/" in url:
         g=url.rsplit("/",1)[1][:-5]
         if g in ACSV: return {"variables":{n:{"label":l} for n,l in ACSV[g].items()}}
         return T.fake(url)
+    if params.get("for")=="block:*":
+        t=params["in"].split("tract:")[1]
+        names=params["get"].split(",")
+        rows=[names+["state","county","tract","block"]]
+        for b,v in (("1000",["120","100","8"]),("2000",["60","0","25"]),("9999",["5","0","2"])):
+            rows.append(v+["05","119",t,b])
+        return rows
+    if url.endswith("2020/dec/pl/groups.json"):
+        return {"groups":[{"name":"P1","description":"RACE"},{"name":"P5","description":"GROUP QUARTERS POPULATION BY MAJOR GROUP QUARTERS TYPE"},{"name":"H1","description":"OCCUPANCY STATUS"}]}
     if params.get("get")=="NAME": return [["NAME","state","place"],["Wrightsville city, Arkansas","05","76970"],["Little Rock city, Arkansas","05","41000"]]
     if "acs5" in url and url.split("/")[-3]=="2009" and "tract" in params.get("for",""): return None
     names=params["get"].split(",")

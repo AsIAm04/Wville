@@ -78,3 +78,8 @@ Boundaries (TIGERweb, Census 2020 vintage)
   tract: Census Tract 40.05 (GEOID 05119004005) from layer 'Census Tracts'
   city area in tract Census Tract 40.05 (05119004005): 79.7%
   city area in tract Census Tract 40.07 (05119004007): 20.3%
+City split by tract (2020 blocks)
+  67 blocks near the city, 41 inside it
+  tract_4005: {'blocks': 33, 'population': 1320, 'group_quarters': 909, 'households': 195, 'household_population': 411}
+  tract_4007: {'blocks': 8, 'population': 222, 'group_quarters': 0, 'households': 100, 'household_population': 222}
+City Hall: 13022 STATE HWY 365, LITTLE ROCK, AR, 72206 -> tract 05119004007

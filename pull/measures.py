@@ -10,7 +10,12 @@ or ambiguous.
 # ---------------------------------------------------------------- geography
 STATE_FIPS = "05"          # Arkansas
 COUNTY_FIPS = "119"        # Pulaski County
-TRACT = "004005"           # Tract 40.05 (2020 numbering; checked per vintage)
+TRACT = "004005"           # Tract 40.05: about 80% of city land (2020 boundaries)
+# Every tract the city touches (2020 numbering; checked per vintage). Key = label used in outputs.
+TRACTS = {"tract_4005": "004005", "tract_4007": "004007"}
+# City Hall street address, used to geocode its tract and place it on the map.
+# Leave empty here and set CITY_HALL_ADDRESS in .env instead; the pull skips the step if neither is set.
+CITY_HALL_ADDRESS = ""
 PLACE_NAME_REGEX = r"^Wrightsville( city| town)?, Arkansas$"
 
 # ---------------------------------------------------------------- vintages

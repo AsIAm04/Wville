@@ -140,7 +140,7 @@ def age65_vars(vars_):
 def geos(year, dataset, key, place_code):
     return {
         "city": {"for": f"place:{place_code}", "in": f"state:{M.STATE_FIPS}"},
-        "tract": {"for": f"tract:{M.TRACT}", "in": f"state:{M.STATE_FIPS} county:{M.COUNTY_FIPS}"},
+        **{k: {"for": f"tract:{t}", "in": f"state:{M.STATE_FIPS} county:{M.COUNTY_FIPS}"} for k, t in M.TRACTS.items()},
         "county": {"for": f"county:{M.COUNTY_FIPS}", "in": f"state:{M.STATE_FIPS}"},
         "state": {"for": f"state:{M.STATE_FIPS}"},
     }
@@ -282,7 +282,7 @@ def derive_decennial():
     idx = {(r["measure"], r["geo"], r["period"]): r["est"] for r in ROWS}
     periods = sorted({r["period"] for r in ROWS if r["source"].startswith("Census") and "acs" not in r["source"]})
     for d in M.DEC_DERIVED:
-        for geo in ("city", "tract", "county", "state"):
+        for geo in ["city", *M.TRACTS, "county", "state"]:
             for p in periods:
                 get = lambda k: idx.get((k, geo, p))
                 f = d["formula"]
@@ -362,7 +362,7 @@ def pull_boundaries(place_code):
         return hits[0]["id"], hits[0]["name"]
     feats = []
     for role, rx, geoid in (("city", r"^Incorporated Places$", M.STATE_FIPS + place_code),
-                            ("tract", r"^Census Tracts$", M.STATE_FIPS + M.COUNTY_FIPS + M.TRACT)):
+                            ("tract", r"^Census Tracts$", M.STATE_FIPS + M.COUNTY_FIPS + M.TRACT)):  # map frame
         lid, lname = layer_id(rx)
         q = {"where": f"GEOID='{geoid}'", "outFields": "GEOID,NAME", "outSR": "4326", "returnGeometry": "true"}
         try:
@@ -412,6 +412,98 @@ def pull_boundaries(place_code):
     return {"type": "FeatureCollection", "features": feats}
 
 
+# ---------------------------------------------------------------- where people live
+def city_split(key, place_code, city_feature):
+    """2020 counts for city blocks in each tract: people, group quarters, households."""
+    log("City split by tract (2020 blocks)")
+    out = {}
+    try:
+        from shapely.geometry import shape
+    except ImportError:
+        log("  shapely not installed; skipped")
+        return out
+    cg = shape(city_feature["geometry"])
+    layers = get_json(TIGER, {"f": "json"})["layers"]
+    hits = [l for l in layers if re.search(r"^Census Blocks$", l["name"], re.I)]
+    if not hits:
+        log("  no 'Census Blocks' layer; layers are: " + ", ".join(l["name"] for l in layers)[:300])
+        return out
+    lid = hits[0]["id"]
+    minx, miny, maxx, maxy = cg.bounds
+    q = {"geometry": f"{minx},{miny},{maxx},{maxy}", "geometryType": "esriGeometryEnvelope", "inSR": "4326",
+         "spatialRel": "esriSpatialRelIntersects", "outFields": "GEOID", "outSR": "4326",
+         "returnGeometry": "true", "f": "geojson"}
+    js = get_json(f"{TIGER}/{lid}/query", q) or {}
+    fs = js.get("features") or [esri_to_geojson(f) for f in (get_json(f"{TIGER}/{lid}/query", {**q, "f": "json"}) or {}).get("features", [])]
+    in_city = set()
+    for f in fs:
+        g = shape(f["geometry"])
+        if g.representative_point().within(cg):
+            in_city.add(str(f["properties"].get("GEOID")))
+    log(f"  {len(fs)} blocks near the city, {len(in_city)} inside it")
+    ds = "dec/pl"
+    try:
+        pop = match(group_vars(2020, ds, find_group(2020, ds, r"^race$"), acs=False), ["TOTAL"])[0]
+        gq = match(group_vars(2020, ds, find_group(2020, ds, r"^group quarters population by (major )?group quarters type$"), acs=False), ["TOTAL"])[0]
+        hh = match(group_vars(2020, ds, find_group(2020, ds, r"^occupancy status$"), acs=False), [r"^occupied$"])[0]
+    except Exception as e:
+        log(f"  variable lookup failed: {e}")
+        return out
+    for label, tract in M.TRACTS.items():
+        js = get_json(f"{API}/2020/{ds}", {"get": f"{pop},{gq},{hh}", "for": "block:*",
+                                          "in": f"state:{M.STATE_FIPS} county:{M.COUNTY_FIPS} tract:{tract}", "key": key})
+        if not js:
+            continue
+        h = js[0]
+        t = {"blocks": 0, "population": 0, "group_quarters": 0, "households": 0}
+        for r in js[1:]:
+            geoid = r[h.index("state")] + r[h.index("county")] + r[h.index("tract")] + r[h.index("block")]
+            if geoid in in_city:
+                t["blocks"] += 1
+                t["population"] += int(r[h.index(pop)])
+                t["group_quarters"] += int(r[h.index(gq)])
+                t["households"] += int(r[h.index(hh)])
+        t["household_population"] = t["population"] - t["group_quarters"]
+        out[label] = t
+        log(f"  {label}: {t}")
+    tot = sum(v["households"] for v in out.values()) or 1
+    for v in out.values():
+        v["share_of_city_households"] = round(v["households"] / tot * 100, 1)
+    return out
+
+
+def env_value(name):
+    v = os.environ.get(name)
+    env = ROOT / ".env"
+    if not v and env.exists():
+        for line in env.read_text().splitlines():
+            if line.startswith(name + "="):
+                v = line.split("=", 1)[1].strip().strip('"')
+    return v
+
+
+def geocode_city_hall():
+    M.CITY_HALL_ADDRESS = M.CITY_HALL_ADDRESS or env_value("CITY_HALL_ADDRESS") or ""
+    if not M.CITY_HALL_ADDRESS:
+        log("City Hall: no address set (add CITY_HALL_ADDRESS=... to .env); skipped")
+        return None
+    url = "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress"
+    try:
+        js = get_json(url, {"address": M.CITY_HALL_ADDRESS, "benchmark": "Public_AR_Current",
+                            "vintage": "Census2020_Current", "format": "json"})
+        m = js["result"]["addressMatches"]
+        if not m:
+            log(f"City Hall: no geocoder match for '{M.CITY_HALL_ADDRESS}'")
+            return None
+        c, geo = m[0]["coordinates"], m[0]["geographies"]
+        tract = geo.get("Census Tracts", [{}])[0].get("GEOID")
+        log(f"City Hall: {m[0]['matchedAddress']} -> tract {tract}")
+        return {"address": m[0]["matchedAddress"], "lon": c["x"], "lat": c["y"], "tract": tract}
+    except Exception as e:
+        log(f"City Hall: geocoder failed ({str(e)[:120]})")
+        return None
+
+
 # ---------------------------------------------------------------- outputs
 def build_series():
     labels = {m["id"]: m for m in M.DEC_MEASURES + M.DEC_DERIVED + M.ACS_MEASURES}
@@ -448,6 +540,9 @@ def main():
     except Exception as e:
         log(f"  boundaries failed: {e}")
         bounds = {"type": "FeatureCollection", "features": []}
+    city_f = [f for f in bounds["features"] if f["properties"]["role"] == "city"]
+    split = city_split(key, place2020, city_f[0]) if city_f else {}
+    hall = geocode_city_hall()
 
     with open(DATA / "series.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["measure", "geo", "period", "est", "moe", "source", "variables"])
@@ -456,7 +551,7 @@ def main():
     (DATA / "boundaries.geojson").write_text(json.dumps(bounds))
     series = build_series()
     stamp = datetime.date.today().isoformat()
-    block = {"pulled": stamp, "measures": series, "boundaries": bounds}
+    block = {"pulled": stamp, "measures": series, "boundaries": bounds, "split": split, "city_hall": hall}
     (DATA / "embed_block.js").write_text(
         "/* ===== WV_SERIES: generated by pull/pull_data.py on " + stamp + ". Paste over the old block. ===== */\n"
         "var WV_SERIES = " + json.dumps(block, separators=(",", ":")) + ";\n/* ===== end WV_SERIES ===== */\n")

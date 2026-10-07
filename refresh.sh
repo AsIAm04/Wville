@@ -35,6 +35,7 @@ if [ -z "$(git config user.name)" ] && [ -z "$SKIP_GH" ]; then
   git config user.name "$LOGIN"; git config user.email "$LOGIN@users.noreply.github.com"
 fi
 git add -A                                  # adds new files, records moves and deletions
+git ls-files -ci --exclude-standard -z | xargs -0 git rm -q --cached --ignore-unmatch --   # untrack ignored files (e.g. .DS_Store)
 if git ls-files | grep -qE '(^|/)\.env$|^\.venv/'; then
   echo "Stopped: .env or .venv would be uploaded. Nothing was pushed."; exit 1
 fi

@@ -1,82 +1,103 @@
 measure,geo,period,est,moe,source,variables
 pop_total,city,2000,1368.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
-pop_total,tract,2000,2684.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_total,tract_4005,2000,2684.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_total,tract_4007,2000,3319.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
 pop_total,county,2000,361474.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
 pop_total,state,2000,2673400.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
 pop_gq,city,2000,618.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
-pop_gq,tract,2000,836.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+pop_gq,tract_4005,2000,836.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+pop_gq,tract_4007,2000,0.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
 pop_gq,county,2000,8253.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
 pop_gq,state,2000,73908.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
 housing_units,city,2000,291.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
-housing_units,tract,2000,807.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+housing_units,tract_4005,2000,807.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+housing_units,tract_4007,2000,1378.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
 housing_units,county,2000,161135.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
 housing_units,state,2000,1173043.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
 households,city,2000,262.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
-households,tract,2000,722.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+households,tract_4005,2000,722.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+households,tract_4007,2000,1235.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
 households,county,2000,147942.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
 households,state,2000,1042696.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
 age65_total,city,2000,97.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,tract,2000,254.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract_4005,2000,254.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract_4007,2000,412.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_total,county,2000,41425.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_total,state,2000,374019.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_gq,city,2000,1.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
-age65_gq,tract,2000,1.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+age65_gq,tract_4005,2000,1.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+age65_gq,tract_4007,2000,0.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
 age65_gq,county,2000,1927.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
 age65_gq,state,2000,21938.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
 pop_total,city,2010,2114.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
-pop_total,tract,2010,3388.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_total,tract_4005,2010,3388.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_total,tract_4007,2010,2779.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
 pop_total,county,2010,382748.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
 pop_total,state,2010,2915918.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
 pop_gq,city,2010,1316.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
-pop_gq,tract,2010,1316.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+pop_gq,tract_4005,2010,1316.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+pop_gq,tract_4007,2010,0.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
 pop_gq,county,2010,7938.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
 pop_gq,state,2010,78931.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
 housing_units,city,2010,369.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
-housing_units,tract,2010,915.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+housing_units,tract_4005,2010,915.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+housing_units,tract_4007,2010,1311.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
 housing_units,county,2010,175555.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
 housing_units,state,2010,1316299.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
 households,city,2010,313.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
-households,tract,2010,790.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+households,tract_4005,2010,790.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+households,tract_4007,2010,1142.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
 households,county,2010,158772.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
 households,state,2010,1147084.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
 age65_total,city,2010,146.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,tract,2010,310.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract_4005,2010,310.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract_4007,2010,416.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_total,county,2010,45908.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_total,state,2010,419981.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
 age65_gq,city,2010,20.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
-age65_gq,tract,2010,20.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+age65_gq,tract_4005,2010,20.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+age65_gq,tract_4007,2010,0.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
 age65_gq,county,2010,1905.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
 age65_gq,state,2010,17089.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
 pop_total,city,2020,1542.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
-pop_total,tract,2020,3268.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_total,tract_4005,2020,3268.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_total,tract_4007,2020,2454.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
 pop_total,county,2020,399125.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
 pop_total,state,2020,3011524.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
 pop_gq,city,2020,909.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
-pop_gq,tract,2020,1362.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+pop_gq,tract_4005,2020,1362.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+pop_gq,tract_4007,2020,0.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
 pop_gq,county,2020,8870.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
 pop_gq,state,2020,82518.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
 housing_units,city,2020,345.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
-housing_units,tract,2020,936.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+housing_units,tract_4005,2020,936.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+housing_units,tract_4007,2020,1214.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
 housing_units,county,2020,190511.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
 housing_units,state,2020,1365265.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
 households,city,2020,295.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
-households,tract,2020,766.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+households,tract_4005,2020,766.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+households,tract_4007,2020,1048.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
 households,county,2020,170622.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
 households,state,2020,1199395.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
 age65_total,city,2020,177.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
-age65_total,tract,2020,417.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_total,tract_4005,2020,417.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_total,tract_4007,2020,526.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
 age65_total,county,2020,65834.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
 age65_total,state,2020,528867.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
 age65_gq,city,2020,21.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
-age65_gq,tract,2020,21.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
+age65_gq,tract_4005,2020,21.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
+age65_gq,tract_4007,2020,0.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
 age65_gq,county,2020,1881.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
 age65_gq,state,2020,17768.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
 pop_household,city,2000,750.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,city,2010,798.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,city,2020,633.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
-pop_household,tract,2000,1848.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
-pop_household,tract,2010,2072.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
-pop_household,tract,2020,1906.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4005,2000,1848.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4005,2010,2072.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4005,2020,1906.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4007,2000,3319.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4007,2010,2779.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract_4007,2020,2454.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,county,2000,353221.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,county,2010,374810.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,county,2020,390255.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
@@ -86,9 +107,12 @@ pop_household,state,2020,2929006.0,,Derived from Census counts,"('minus', 'pop_t
 age65_household_share,city,2000,12.8,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,city,2010,15.789473684210526,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,city,2020,24.644549763033176,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
-age65_household_share,tract,2000,13.690476190476192,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
-age65_household_share,tract,2010,13.996138996138995,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
-age65_household_share,tract,2020,20.776495278069255,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4005,2000,13.690476190476192,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4005,2010,13.996138996138995,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4005,2020,20.776495278069255,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4007,2000,12.413377523350407,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4007,2010,14.969413458078446,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract_4007,2020,21.434392828035858,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,county,2000,11.182234351864697,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,county,2010,11.740081641364958,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,county,2020,16.38749023074656,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
@@ -98,9 +122,12 @@ age65_household_share,state,2020,17.449571629419676,,Derived from Census counts,
 age65_total_share,city,2000,7.090643274853801,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,city,2010,6.906338694418164,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,city,2020,11.478599221789883,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
-age65_total_share,tract,2000,9.463487332339792,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
-age65_total_share,tract,2010,9.149940968122786,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
-age65_total_share,tract,2020,12.760097919216646,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4005,2000,9.463487332339792,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4005,2010,9.149940968122786,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4005,2020,12.760097919216646,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4007,2000,12.413377523350407,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4007,2010,14.969413458078446,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
+age65_total_share,tract_4007,2020,21.434392828035858,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,county,2000,11.460022020947564,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,county,2010,11.994314797203382,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,county,2020,16.49458189790166,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
@@ -108,122 +135,152 @@ age65_total_share,state,2000,13.990386773397173,,Derived from Census counts,"('s
 age65_total_share,state,2010,14.403045627483351,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,state,2020,17.56144065263966,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 median_hh_income,city,2005 to 2009,28576.0,5678.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
-median_hh_income,tract,2005 to 2009,46750.0,9432.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
+median_hh_income,tract_4005,2005 to 2009,46750.0,9432.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
+median_hh_income,tract_4007,2005 to 2009,35302.0,5330.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
 median_hh_income,county,2005 to 2009,44370.0,752.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
 median_hh_income,state,2005 to 2009,38542.0,288.0,ACS 5-year 2005 to 2009,B19013: num=B19013_001E
 poverty_rate,city,2005 to 2009,33.43815513626834,14.113320207672315,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
-poverty_rate,tract,2005 to 2009,19.778699861687414,10.340424605036807,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4005,2005 to 2009,19.778699861687414,10.340424605036807,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4007,2005 to 2009,18.709043250327653,6.220075965066694,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,county,2005 to 2009,15.398564965533692,0.7913075173520081,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,state,2005 to 2009,17.737473146374036,0.3029167488498403,ACS 5-year 2005 to 2009,B17001: num=B17001_002E den=B17001_001E
 owner_share,city,2005 to 2009,78.4741144414169,8.914726697187971,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
-owner_share,tract,2005 to 2009,87.21088435374149,3.4601635446967647,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4005,2005 to 2009,87.21088435374149,3.4601635446967647,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4007,2005 to 2009,68.29836829836829,6.613918953030007,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
 owner_share,county,2005 to 2009,61.15619638760915,0.7731866215708042,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
 owner_share,state,2005 to 2009,67.54392210051053,0.4623808987243368,ACS 5-year 2005 to 2009,B25003: num=B25003_002E den=B25003_001E
 no_vehicle_share,city,2005 to 2009,11.716621253405995,7.364353391049673,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
-no_vehicle_share,tract,2005 to 2009,7.210884353741497,17.98803491737764,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4005,2005 to 2009,7.210884353741497,17.98803491737764,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4007,2005 to 2009,11.421911421911423,5.659079603043104,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,county,2005 to 2009,7.665567913847498,0.5009549220480788,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,state,2005 to 2009,6.666426347402524,0.16328440046981707,ACS 5-year 2005 to 2009,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 rent_burden_30,city,2005 to 2009,62.903225806451616,193.53333023012894,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
-rent_burden_30,tract,2005 to 2009,73.80952380952381,372.9092292536898,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4005,2005 to 2009,73.80952380952381,372.9092292536898,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4007,2005 to 2009,63.82428940568475,37.749417510258915,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,county,2005 to 2009,49.77195900627783,1.94129760044737,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,state,2005 to 2009,47.700431397607446,0.6922381970072337,ACS 5-year 2005 to 2009,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 built_pre1980,city,2005 to 2009,51.47783251231527,12.225104740741557,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
-built_pre1980,tract,2005 to 2009,50.05452562704471,13.095147931703755,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
+built_pre1980,tract_4005,2005 to 2009,50.05452562704471,13.095147931703755,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
+built_pre1980,tract_4007,2005 to 2009,67.96769851951548,11.930587411352366,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 built_pre1980,county,2005 to 2009,61.08924411599326,1.1729747581433205,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 built_pre1980,state,2005 to 2009,52.882798025391374,0.40190080871728395,ACS 5-year 2005 to 2009,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 median_hh_income,city,2010 to 2014,29674.0,6151.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
-median_hh_income,tract,2010 to 2014,28952.0,6299.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
+median_hh_income,tract_4005,2010 to 2014,28952.0,6299.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
+median_hh_income,tract_4007,2010 to 2014,36557.0,6947.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
 median_hh_income,county,2010 to 2014,46410.0,863.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
 median_hh_income,state,2010 to 2014,41264.0,239.0,ACS 5-year 2010 to 2014,B19013: num=B19013_001E
 poverty_rate,city,2010 to 2014,22.705314009661837,10.735577130903923,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
-poverty_rate,tract,2010 to 2014,27.997967479674795,15.084931981428282,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4005,2010 to 2014,27.997967479674795,15.084931981428282,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4007,2010 to 2014,14.582645991421971,7.119639096514556,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,county,2010 to 2014,16.91755916877883,0.7290184928910022,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,state,2010 to 2014,19.188538500179202,0.30100715489848273,ACS 5-year 2010 to 2014,B17001: num=B17001_002E den=B17001_001E
 owner_share,city,2010 to 2014,67.64705882352942,10.156657367689025,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
-owner_share,tract,2010 to 2014,63.48484848484849,10.49199600233077,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4005,2010 to 2014,63.48484848484849,10.49199600233077,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4007,2010 to 2014,65.58005752636625,5.7701227905632075,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
 owner_share,county,2010 to 2014,60.2962373551261,0.757572687464686,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
 owner_share,state,2010 to 2014,66.54551748009692,0.3363833045623116,ACS 5-year 2010 to 2014,B25003: num=B25003_002E den=B25003_001E
 no_vehicle_share,city,2010 to 2014,9.15032679738562,6.451602407214755,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
-no_vehicle_share,tract,2010 to 2014,5.151515151515151,3.9336998185788117,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4005,2010 to 2014,5.151515151515151,3.9336998185788117,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4007,2010 to 2014,6.615532118887824,3.5176763554212966,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,county,2010 to 2014,7.12091467033648,0.5208686998964535,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,state,2010 to 2014,6.3579481636891515,0.14619033278911464,ACS 5-year 2010 to 2014,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 rent_burden_30,city,2010 to 2014,64.93506493506493,55.037532367957965,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
-rent_burden_30,tract,2010 to 2014,55.75221238938053,21.42849434010983,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4005,2010 to 2014,55.75221238938053,21.42849434010983,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4007,2010 to 2014,61.53846153846154,22.526314978354804,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,county,2010 to 2014,49.64363351270447,1.7670304235277687,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,state,2010 to 2014,49.164979680516595,0.6204069966170535,ACS 5-year 2010 to 2014,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 built_pre1980,city,2010 to 2014,40.609137055837564,11.056549862808222,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
-built_pre1980,tract,2010 to 2014,48.063781321184514,12.364452151287503,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
+built_pre1980,tract_4005,2010 to 2014,48.063781321184514,12.364452151287503,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
+built_pre1980,tract_4007,2010 to 2014,52.08491281273692,9.678639357553367,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 built_pre1980,county,2010 to 2014,53.75211996037144,1.081218669055477,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 built_pre1980,state,2010 to 2014,46.37505934292802,0.36638246816270575,ACS 5-year 2010 to 2014,"B25034: num=B25034_006E,B25034_007E,B25034_008E,B25034_009E,B25034_010E den=B25034_001E"
 disability_share,city,2010 to 2014,17.02898550724638,4.525442932614308,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
-disability_share,tract,2010 to 2014,15.752032520325205,3.8036857584244257,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4005,2010 to 2014,15.752032520325205,3.8036857584244257,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4007,2010 to 2014,18.80567469482019,3.7436801124840056,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,county,2010 to 2014,13.128125277584738,0.37494937904414294,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,state,2010 to 2014,16.688753484505074,0.1412956438874944,ACS 5-year 2010 to 2014,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 uninsured_share,city,2010 to 2014,16.666666666666664,6.80922758421167,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
-uninsured_share,tract,2010 to 2014,13.211382113821138,5.878016526387919,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4005,2010 to 2014,13.211382113821138,5.878016526387919,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4007,2010 to 2014,19.168591224018474,6.178056888640154,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,county,2010 to 2014,14.806174007095718,0.4673349939552545,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,state,2010 to 2014,15.755163563972696,0.16365713921823138,ACS 5-year 2010 to 2014,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 median_hh_income,city,2015 to 2019,24091.0,9849.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
-median_hh_income,tract,2015 to 2019,34608.0,6366.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
+median_hh_income,tract_4005,2015 to 2019,34608.0,6366.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
+median_hh_income,tract_4007,2015 to 2019,40500.0,13280.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
 median_hh_income,county,2015 to 2019,51749.0,952.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
 median_hh_income,state,2015 to 2019,47597.0,328.0,ACS 5-year 2015 to 2019,B19013: num=B19013_001E
 poverty_rate,city,2015 to 2019,27.945619335347434,16.221846991824147,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
-poverty_rate,tract,2015 to 2019,27.581261950286805,12.183519571917955,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4005,2015 to 2019,27.581261950286805,12.183519571917955,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4007,2015 to 2019,28.835884656461374,11.653699772352798,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,county,2015 to 2019,16.82589491453456,0.9439268610855425,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,state,2015 to 2019,17.048019309133707,0.26172392114190457,ACS 5-year 2015 to 2019,B17001: num=B17001_002E den=B17001_001E
 owner_share,city,2015 to 2019,79.34782608695652,22.657097904867637,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
-owner_share,tract,2015 to 2019,77.60989010989012,7.148045328147412,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4005,2015 to 2019,77.60989010989012,7.148045328147412,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4007,2015 to 2019,70.84210526315789,8.742836833447532,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
 owner_share,county,2015 to 2019,58.80253842114255,0.6554216635908119,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
 owner_share,state,2015 to 2019,65.57931249465706,0.35704867833081927,ACS 5-year 2015 to 2019,B25003: num=B25003_002E den=B25003_001E
 no_vehicle_share,city,2015 to 2019,15.217391304347828,9.771732831114782,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
-no_vehicle_share,tract,2015 to 2019,11.95054945054945,7.669572936484549,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4005,2015 to 2019,11.95054945054945,7.669572936484549,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4007,2015 to 2019,13.263157894736842,7.411362740904927,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,county,2015 to 2019,7.5330114962891725,0.5404371767647965,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,state,2015 to 2019,6.366017282187361,0.16696702512328512,ACS 5-year 2015 to 2019,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 rent_burden_30,city,2015 to 2019,70.2127659574468,45.026168908575485,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
-rent_burden_30,tract,2015 to 2019,45.28301886792453,51.984188474092306,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4005,2015 to 2019,45.28301886792453,51.984188474092306,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4007,2015 to 2019,67.56756756756756,24.447619746686865,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,county,2015 to 2019,48.177198228671344,1.848260247476569,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,state,2015 to 2019,44.94308777180691,0.6857275767512959,ACS 5-year 2015 to 2019,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 built_pre1980,city,2015 to 2019,70.54263565891473,11.896498582574067,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
-built_pre1980,tract,2015 to 2019,59.27051671732523,12.082547684017753,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
+built_pre1980,tract_4005,2015 to 2019,59.27051671732523,12.082547684017753,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
+built_pre1980,tract_4007,2015 to 2019,65.29790660225443,12.583937339729104,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 built_pre1980,county,2015 to 2019,54.05899554576577,1.2150285373714214,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 built_pre1980,state,2015 to 2019,43.78831787056816,0.36409803490937076,ACS 5-year 2015 to 2019,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 disability_share,city,2015 to 2019,25.226586102719033,5.8564396940632,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
-disability_share,tract,2015 to 2019,24.8565965583174,5.902818229918297,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4005,2015 to 2019,24.8565965583174,5.902818229918297,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4007,2015 to 2019,21.99361475700603,4.2615912894559544,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,county,2015 to 2019,15.749637078305692,0.44576626083157833,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,state,2015 to 2019,17.347008760594235,0.1433071799993108,ACS 5-year 2015 to 2019,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 uninsured_share,city,2015 to 2019,8.459214501510575,6.990959853679628,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
-uninsured_share,tract,2015 to 2019,6.21414913957935,4.269615700049101,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4005,2015 to 2019,6.21414913957935,4.269615700049101,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4007,2015 to 2019,9.435970202199362,3.1463301949498734,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,county,2015 to 2019,7.904318056551092,0.4045181761883647,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,state,2015 to 2019,8.509714338487196,0.13485659044166018,ACS 5-year 2015 to 2019,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 median_hh_income,city,2020 to 2024,45417.0,9396.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
-median_hh_income,tract,2020 to 2024,43259.0,15343.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
+median_hh_income,tract_4005,2020 to 2024,43259.0,15343.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
+median_hh_income,tract_4007,2020 to 2024,49688.0,21138.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
 median_hh_income,county,2020 to 2024,62873.0,1935.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
 median_hh_income,state,2020 to 2024,60773.0,467.0,ACS 5-year 2020 to 2024,B19013: num=B19013_001E
 poverty_rate,city,2020 to 2024,16.371681415929203,9.588793871508287,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
-poverty_rate,tract,2020 to 2024,21.75962293794187,9.182801801877307,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4005,2020 to 2024,21.75962293794187,9.182801801877307,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
+poverty_rate,tract_4007,2020 to 2024,17.5715695952616,12.361662596275348,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,county,2020 to 2024,16.696089636311687,0.8412651220914005,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
 poverty_rate,state,2020 to 2024,15.99386978662713,0.2455752226440849,ACS 5-year 2020 to 2024,B17001: num=B17001_002E den=B17001_001E
 owner_share,city,2020 to 2024,83.59375,7.539694863318687,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
-owner_share,tract,2020 to 2024,75.20467836257309,4.702478339477279,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4005,2020 to 2024,75.20467836257309,4.702478339477279,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
+owner_share,tract_4007,2020 to 2024,68.12080536912751,13.090363875513432,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
 owner_share,county,2020 to 2024,56.99586448503269,1.0507701232510698,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
 owner_share,state,2020 to 2024,66.40734933295302,0.44866215786553776,ACS 5-year 2020 to 2024,B25003: num=B25003_002E den=B25003_001E
 no_vehicle_share,city,2020 to 2024,12.890625,9.243076180968776,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
-no_vehicle_share,tract,2020 to 2024,14.035087719298245,8.72455653730014,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4005,2020 to 2024,14.035087719298245,8.72455653730014,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
+no_vehicle_share,tract_4007,2020 to 2024,4.3624161073825505,3.754020045168237,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,county,2020 to 2024,7.1510187983225935,0.649251939214808,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 no_vehicle_share,state,2020 to 2024,5.851638533417027,0.18886873607773977,ACS 5-year 2020 to 2024,"B25044: num=B25044_003E,B25044_010E den=B25044_001E"
 rent_burden_30,city,2020 to 2024,100.0,218.89228446783244,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
-rent_burden_30,tract,2020 to 2024,33.33333333333333,2.7774278215209374,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4005,2020 to 2024,33.33333333333333,2.7774278215209374,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
+rent_burden_30,tract_4007,2020 to 2024,45.08196721311475,68.59880593381126,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,county,2020 to 2024,47.93224976578881,2.295822829598159,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 rent_burden_30,state,2020 to 2024,44.77117851697735,0.7928927955338694,ACS 5-year 2020 to 2024,"B25070: num=B25070_007E,B25070_008E,B25070_009E,B25070_010E den=B25070_001E minus=B25070_011E"
 built_pre1980,city,2020 to 2024,50.70422535211267,14.687773652673611,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
-built_pre1980,tract,2020 to 2024,39.03381642512077,11.184040193063058,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
+built_pre1980,tract_4005,2020 to 2024,39.03381642512077,11.184040193063058,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
+built_pre1980,tract_4007,2020 to 2024,47.45417515274949,13.179358106042136,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 built_pre1980,county,2020 to 2024,49.29785737921906,1.4085368503357796,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 built_pre1980,state,2020 to 2024,39.62971965471476,0.3957196276496969,ACS 5-year 2020 to 2024,"B25034: num=B25034_007E,B25034_008E,B25034_009E,B25034_010E,B25034_011E den=B25034_001E"
 disability_share,city,2020 to 2024,22.67818574514039,8.35774878572005,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
-disability_share,tract,2020 to 2024,21.29485179407176,3.893093601020572,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4005,2020 to 2024,21.29485179407176,3.893093601020572,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
+disability_share,tract_4007,2020 to 2024,24.20225822287678,7.22023896609617,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,county,2020 to 2024,16.00628626446121,0.5634317435485022,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 disability_share,state,2020 to 2024,17.985262545747833,0.17476347695212005,ACS 5-year 2020 to 2024,"B18101: num=B18101_004E,B18101_007E,B18101_010E,B18101_013E,B18101_016E,B18101_019E,B18101_023E,B18101_026E,B18101_029E,B18101_032E,B18101_035E,B18101_038E den=B18101_001E"
 uninsured_share,city,2020 to 2024,4.967602591792657,11.47080079260153,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
-uninsured_share,tract,2020 to 2024,23.985959438377535,8.4817579206371,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4005,2020 to 2024,23.985959438377535,8.4817579206371,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
+uninsured_share,tract_4007,2020 to 2024,8.19833087874325,4.305660118310302,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,county,2020 to 2024,9.74218164960953,0.5192152557214762,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
 uninsured_share,state,2020 to 2024,9.008555174650484,0.15388076528308398,ACS 5-year 2020 to 2024,"B27001: num=B27001_005E,B27001_008E,B27001_011E,B27001_014E,B27001_017E,B27001_020E,B27001_023E,B27001_026E,B27001_029E,B27001_033E,B27001_036E,B27001_039E,B27001_042E,B27001_045E,B27001_048E,B27001_051E,B27001_054E,B27001_057E den=B27001_001E"
