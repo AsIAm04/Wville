@@ -1,88 +1,100 @@
 measure,geo,period,est,moe,source,variables
-pop_total,city,2000,1368.0,,Census 2000 dec/sf1,P001: P001001=total
-pop_total,tract,2000,2684.0,,Census 2000 dec/sf1,P001: P001001=total
-pop_total,county,2000,361474.0,,Census 2000 dec/sf1,P001: P001001=total
-pop_total,state,2000,2673400.0,,Census 2000 dec/sf1,P001: P001001=total
-pop_gq,city,2000,618.0,,Census 2000 dec/sf1,P037: P037001=total
-pop_gq,tract,2000,836.0,,Census 2000 dec/sf1,P037: P037001=total
-pop_gq,county,2000,8253.0,,Census 2000 dec/sf1,P037: P037001=total
-pop_gq,state,2000,73908.0,,Census 2000 dec/sf1,P037: P037001=total
-housing_units,city,2000,291.0,,Census 2000 dec/sf1,H003: H003001=total
-housing_units,tract,2000,807.0,,Census 2000 dec/sf1,H003: H003001=total
-housing_units,county,2000,161135.0,,Census 2000 dec/sf1,H003: H003001=total
-housing_units,state,2000,1173043.0,,Census 2000 dec/sf1,H003: H003001=total
-households,city,2000,262.0,,Census 2000 dec/sf1,H003: H003002=occupied
-households,tract,2000,722.0,,Census 2000 dec/sf1,H003: H003002=occupied
-households,county,2000,147942.0,,Census 2000 dec/sf1,H003: H003002=occupied
-households,state,2000,1042696.0,,Census 2000 dec/sf1,H003: H003002=occupied
-age65_total,city,2000,97.0,,Census 2000 dec/sf1,P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,tract,2000,254.0,,Census 2000 dec/sf1,P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,county,2000,41425.0,,Census 2000 dec/sf1,P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,state,2000,374019.0,,Census 2000 dec/sf1,P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_gq,city,2000,1.0,,Census 2000 dec/sf1,P038: P038021=male>65 years and over; P038049=female>65 years and over
-age65_gq,tract,2000,1.0,,Census 2000 dec/sf1,P038: P038021=male>65 years and over; P038049=female>65 years and over
-age65_gq,county,2000,1927.0,,Census 2000 dec/sf1,P038: P038021=male>65 years and over; P038049=female>65 years and over
-age65_gq,state,2000,21938.0,,Census 2000 dec/sf1,P038: P038021=male>65 years and over; P038049=female>65 years and over
-pop_total,city,2010,2114.0,,Census 2010 dec/sf1,P1: P001001=total
-pop_total,tract,2010,3388.0,,Census 2010 dec/sf1,P1: P001001=total
-pop_total,county,2010,382748.0,,Census 2010 dec/sf1,P1: P001001=total
-pop_total,state,2010,2915918.0,,Census 2010 dec/sf1,P1: P001001=total
-pop_gq,city,2010,1316.0,,Census 2010 dec/sf1,P42: P042001=total
-pop_gq,tract,2010,1316.0,,Census 2010 dec/sf1,P42: P042001=total
-pop_gq,county,2010,7938.0,,Census 2010 dec/sf1,P42: P042001=total
-pop_gq,state,2010,78931.0,,Census 2010 dec/sf1,P42: P042001=total
-housing_units,city,2010,369.0,,Census 2010 dec/sf1,H3: H003001=total
-housing_units,tract,2010,915.0,,Census 2010 dec/sf1,H3: H003001=total
-housing_units,county,2010,175555.0,,Census 2010 dec/sf1,H3: H003001=total
-housing_units,state,2010,1316299.0,,Census 2010 dec/sf1,H3: H003001=total
-households,city,2010,313.0,,Census 2010 dec/sf1,H3: H003002=occupied
-households,tract,2010,790.0,,Census 2010 dec/sf1,H3: H003002=occupied
-households,county,2010,158772.0,,Census 2010 dec/sf1,H3: H003002=occupied
-households,state,2010,1147084.0,,Census 2010 dec/sf1,H3: H003002=occupied
-age65_total,city,2010,146.0,,Census 2010 dec/sf1,P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,tract,2010,310.0,,Census 2010 dec/sf1,P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,county,2010,45908.0,,Census 2010 dec/sf1,P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_total,state,2010,419981.0,,Census 2010 dec/sf1,P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
-age65_gq,city,2010,20.0,,Census 2010 dec/sf1,P43: P043023=male>65 years and over; P043054=female>65 years and over
-age65_gq,tract,2010,20.0,,Census 2010 dec/sf1,P43: P043023=male>65 years and over; P043054=female>65 years and over
-age65_gq,county,2010,1905.0,,Census 2010 dec/sf1,P43: P043023=male>65 years and over; P043054=female>65 years and over
-age65_gq,state,2010,17089.0,,Census 2010 dec/sf1,P43: P043023=male>65 years and over; P043054=female>65 years and over
-pop_total,city,2020,1542.0,,Census 2020 dec/dhc,P1: P1_001N=total
-pop_total,tract,2020,3268.0,,Census 2020 dec/dhc,P1: P1_001N=total
-pop_total,county,2020,399125.0,,Census 2020 dec/dhc,P1: P1_001N=total
-pop_total,state,2020,3011524.0,,Census 2020 dec/dhc,P1: P1_001N=total
-housing_units,city,2020,345.0,,Census 2020 dec/dhc,H3: H3_001N=total
-housing_units,tract,2020,936.0,,Census 2020 dec/dhc,H3: H3_001N=total
-housing_units,county,2020,190511.0,,Census 2020 dec/dhc,H3: H3_001N=total
-housing_units,state,2020,1365265.0,,Census 2020 dec/dhc,H3: H3_001N=total
-households,city,2020,295.0,,Census 2020 dec/dhc,H3: H3_002N=occupied
-households,tract,2020,766.0,,Census 2020 dec/dhc,H3: H3_002N=occupied
-households,county,2020,170622.0,,Census 2020 dec/dhc,H3: H3_002N=occupied
-households,state,2020,1199395.0,,Census 2020 dec/dhc,H3: H3_002N=occupied
-age65_total,city,2020,177.0,,Census 2020 dec/dhc,P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
-age65_total,tract,2020,417.0,,Census 2020 dec/dhc,P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
-age65_total,county,2020,65834.0,,Census 2020 dec/dhc,P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
-age65_total,state,2020,528867.0,,Census 2020 dec/dhc,P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
-age65_gq,city,2020,,,Census 2020 dec/dhc,PCO1: PCO1_016N=male>65 to 69 years; PCO1_017N=male>70 to 74 years; PCO1_018N=male>75 to 79 years; PCO1_019N=male>80 to 84 years; PCO1_020N=male>85 years and over; PCO1_035N=female>65 to 69 years; PCO1_036N=female>70 to 74 years; PCO1_037N=female>75 to 79 years; PCO1_038N=female>80 to 84 years; PCO1_039N=female>85 years and over
-age65_gq,tract,2020,,,Census 2020 dec/dhc,PCO1: PCO1_016N=male>65 to 69 years; PCO1_017N=male>70 to 74 years; PCO1_018N=male>75 to 79 years; PCO1_019N=male>80 to 84 years; PCO1_020N=male>85 years and over; PCO1_035N=female>65 to 69 years; PCO1_036N=female>70 to 74 years; PCO1_037N=female>75 to 79 years; PCO1_038N=female>80 to 84 years; PCO1_039N=female>85 years and over
-age65_gq,county,2020,1881.0,,Census 2020 dec/dhc,PCO1: PCO1_016N=male>65 to 69 years; PCO1_017N=male>70 to 74 years; PCO1_018N=male>75 to 79 years; PCO1_019N=male>80 to 84 years; PCO1_020N=male>85 years and over; PCO1_035N=female>65 to 69 years; PCO1_036N=female>70 to 74 years; PCO1_037N=female>75 to 79 years; PCO1_038N=female>80 to 84 years; PCO1_039N=female>85 years and over
-age65_gq,state,2020,17768.0,,Census 2020 dec/dhc,PCO1: PCO1_016N=male>65 to 69 years; PCO1_017N=male>70 to 74 years; PCO1_018N=male>75 to 79 years; PCO1_019N=male>80 to 84 years; PCO1_020N=male>85 years and over; PCO1_035N=female>65 to 69 years; PCO1_036N=female>70 to 74 years; PCO1_037N=female>75 to 79 years; PCO1_038N=female>80 to 84 years; PCO1_039N=female>85 years and over
+pop_total,city,2000,1368.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_total,tract,2000,2684.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_total,county,2000,361474.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_total,state,2000,2673400.0,,Census 2000 dec/sf1,dec/sf1 P001: P001001=total
+pop_gq,city,2000,618.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+pop_gq,tract,2000,836.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+pop_gq,county,2000,8253.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+pop_gq,state,2000,73908.0,,Census 2000 dec/sf1,dec/sf1 P037: P037001=total
+housing_units,city,2000,291.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+housing_units,tract,2000,807.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+housing_units,county,2000,161135.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+housing_units,state,2000,1173043.0,,Census 2000 dec/sf1,dec/sf1 H003: H003001=total
+households,city,2000,262.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+households,tract,2000,722.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+households,county,2000,147942.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+households,state,2000,1042696.0,,Census 2000 dec/sf1,dec/sf1 H003: H003002=occupied
+age65_total,city,2000,97.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract,2000,254.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,county,2000,41425.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,state,2000,374019.0,,Census 2000 dec/sf1,dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_gq,city,2000,1.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+age65_gq,tract,2000,1.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+age65_gq,county,2000,1927.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+age65_gq,state,2000,21938.0,,Census 2000 dec/sf1,dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
+pop_total,city,2010,2114.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_total,tract,2010,3388.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_total,county,2010,382748.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_total,state,2010,2915918.0,,Census 2010 dec/sf1,dec/sf1 P1: P001001=total
+pop_gq,city,2010,1316.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+pop_gq,tract,2010,1316.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+pop_gq,county,2010,7938.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+pop_gq,state,2010,78931.0,,Census 2010 dec/sf1,dec/sf1 P42: P042001=total
+housing_units,city,2010,369.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+housing_units,tract,2010,915.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+housing_units,county,2010,175555.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+housing_units,state,2010,1316299.0,,Census 2010 dec/sf1,dec/sf1 H3: H003001=total
+households,city,2010,313.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+households,tract,2010,790.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+households,county,2010,158772.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+households,state,2010,1147084.0,,Census 2010 dec/sf1,dec/sf1 H3: H003002=occupied
+age65_total,city,2010,146.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,tract,2010,310.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,county,2010,45908.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_total,state,2010,419981.0,,Census 2010 dec/sf1,dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+age65_gq,city,2010,20.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+age65_gq,tract,2010,20.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+age65_gq,county,2010,1905.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+age65_gq,state,2010,17089.0,,Census 2010 dec/sf1,dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
+pop_total,city,2020,1542.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_total,tract,2020,3268.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_total,county,2020,399125.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_total,state,2020,3011524.0,,Census 2020 dec/dhc,dec/dhc P1: P1_001N=total
+pop_gq,city,2020,909.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+pop_gq,tract,2020,1362.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+pop_gq,county,2020,8870.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+pop_gq,state,2020,82518.0,,Census 2020 dec/pl,dec/pl P5: P5_001N=total
+housing_units,city,2020,345.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+housing_units,tract,2020,936.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+housing_units,county,2020,190511.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+housing_units,state,2020,1365265.0,,Census 2020 dec/dhc,dec/dhc H3: H3_001N=total
+households,city,2020,295.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+households,tract,2020,766.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+households,county,2020,170622.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+households,state,2020,1199395.0,,Census 2020 dec/dhc,dec/dhc H3: H3_002N=occupied
+age65_total,city,2020,177.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_total,tract,2020,417.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_total,county,2020,65834.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_total,state,2020,528867.0,,Census 2020 dec/dhc,dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+age65_gq,city,2020,21.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
+age65_gq,tract,2020,21.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
+age65_gq,county,2020,1881.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
+age65_gq,state,2020,17768.0,,Census 2020 dec/dhc,dec/dhc PCT9: PCT9_014N=in group quarters
 pop_household,city,2000,750.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,city,2010,798.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,city,2020,633.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,tract,2000,1848.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,tract,2010,2072.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,tract,2020,1906.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,county,2000,353221.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,county,2010,374810.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,county,2020,390255.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,state,2000,2599492.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 pop_household,state,2010,2836987.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
+pop_household,state,2020,2929006.0,,Derived from Census counts,"('minus', 'pop_total', 'pop_gq')"
 age65_household_share,city,2000,12.8,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,city,2010,15.789473684210526,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,city,2020,24.644549763033176,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,tract,2000,13.690476190476192,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,tract,2010,13.996138996138995,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,tract,2020,20.776495278069255,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,county,2000,11.182234351864697,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,county,2010,11.740081641364958,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,county,2020,16.38749023074656,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,state,2000,13.544223255928467,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_household_share,state,2010,14.201404518244178,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
+age65_household_share,state,2020,17.449571629419676,,Derived from Census counts,"('share_of_diff', 'age65_total', 'age65_gq', 'pop_total', 'pop_gq')"
 age65_total_share,city,2000,7.090643274853801,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,city,2010,6.906338694418164,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"
 age65_total_share,city,2020,11.478599221789883,,Derived from Census counts,"('share', 'age65_total', 'pop_total')"

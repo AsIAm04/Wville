@@ -7,28 +7,53 @@ Public data dashboard for the City of Wrightsville, Arkansas. Built by As-I-Am C
 | Path | What it is |
 | --- | --- |
 | `embed/wrightsville-dashboard-embed.html` | The dashboard. Paste the whole file into a Squarespace Code Block (HTML mode). |
+| `refresh.sh` | Runs everything: pull, embed update, GitHub sync. |
 | `pull/pull_data.py` | Pulls Census data and city/tract boundaries. |
+| `pull/update_embed.py` | Writes the latest pull into the embed file. |
 | `pull/measures.py` | The list of measures, geographies, and time periods. Edit this to add a measure. |
 | `data/` | Output of the last pull. Commit it so every change is on record. |
 | `tests/` | Offline checks that run without internet or an API key. |
 
-## One-time setup
+## One-time setup (Mac)
 
-1. Install Python 3.9 or newer.
-2. In this folder, run `pip install -r requirements.txt`.
-3. Get a free Census API key at https://api.census.gov/data/key_signup.html.
-4. Copy `.env.example` to `.env` and put the key after `CENSUS_API_KEY=`.
-   `.env` is listed in `.gitignore`, so the key never goes into the repository.
+1. Unzip this folder somewhere on your computer, for example `~/Downloads/wrightsville-dashboard`.
+2. Get a free Census API key at https://api.census.gov/data/key_signup.html.
+3. In Terminal, run one line at a time:
+   ```
+   cd ~/Downloads/wrightsville-dashboard
+   cp .env.example .env
+   open -e .env
+   ```
+   Paste the key after `CENSUS_API_KEY=` (no spaces or quotes), then save with Cmd + S.
+4. Create a private Python environment and install what the script needs:
+   ```
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+   Your Terminal prompt now starts with `(.venv)`.
 
-## Each refresh
+**Never upload `.env` or `.venv` to GitHub.** `.gitignore` only protects you when using git from the
+command line; GitHub's web upload page ignores it. In Finder, Cmd + Shift + . (period) shows hidden files
+so you can see what you are dragging.
 
-1. Run `python pull/pull_data.py` from this folder.
-2. Read `data/pull_log.txt`. It lists every Census variable used with its published label.
-   Lines starting with `MISSING` or `SKIP` are gaps; the dashboard shows those measures as pending.
-3. Open `data/embed_block.js`, copy all of it, and paste it over the `WV_SERIES` block in the embed file
-   (between the `WV_SERIES` and `end WV_SERIES` comment lines).
-4. Paste the updated embed file into the Squarespace Code Block.
-5. Commit `data/` and the embed file with a message such as `Refresh: ACS 2020-2024`.
+## Each refresh: one command
+
+```
+cd ~/Downloads/wrightsville-dashboard
+./refresh.sh
+```
+
+It pulls the data, writes it into the embed, and syncs GitHub (adds, moves, and deletes files to match
+this folder). It refuses to push if `.env` or `.venv` would be uploaded. The only manual step left is
+pasting `embed/wrightsville-dashboard-embed.html` into the Squarespace Code Block.
+
+First time only, sign in to GitHub from Terminal:
+```
+brew install gh
+gh auth login
+```
+Answer: GitHub.com, HTTPS, Yes (authenticate Git), Login with a web browser.
 
 ## Rules the dashboard follows
 
@@ -37,6 +62,8 @@ Public data dashboard for the City of Wrightsville, Arkansas. Built by As-I-Am C
 - Survey values with a margin of error above 30% of the estimate are withheld; 15% to 30% are marked "Use with caution."
 - "Differs from county" means the 90% confidence intervals support a real difference.
 - Median household income is not adjusted for inflation; the dashboard says so next to the figure.
+- Trend charts drop survey periods that fail the reliability rule and say how many were withheld.
+- A row shows a pulled value as current only if it is from the latest period for its source; otherwise the hand-entered, verified value stays.
 
 ## Checks
 

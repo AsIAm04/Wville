@@ -33,7 +33,9 @@ DEC_MEASURES = [
      "group": r"^total population$", "kind": "total"},
     {"id": "pop_gq", "label": "Group quarters population",
      "group": r"^group quarters population by (major )?group quarters type$",
-     "kind": "total"},
+     "kind": "total",
+     # 2020 DHC names this table differently; the 2020 redistricting file has it.
+     "alts": [{"dataset": "dec/pl", "group": r"^group quarters population by (major )?group quarters type$", "kind": "total"}]},
     {"id": "housing_units", "label": "Housing units",
      "group": r"^occupancy status$", "kind": "total"},
     {"id": "households", "label": "Households (occupied units)",
@@ -42,7 +44,11 @@ DEC_MEASURES = [
      "group": r"^sex by age( for selected age categories)?$", "kind": "age65"},
     {"id": "age65_gq", "label": "Residents 65 and older in group quarters",
      "group": r"^group quarters population by sex by age( by group quarters type)?$",
-     "kind": "age65"},
+     "kind": "age65",
+     # 2020 group-quarters-by-age tables came back empty at place and tract level.
+     # Fallback: the 65+ relationship table's "in group quarters" line.
+     "alts": [{"group": r"relationship.*65 years and over", "kind": "label",
+               "path": [r"^in group quarters$"]}]},
 ]
 
 # Derived decennial measures (computed after the pull).

@@ -227,29 +227,55 @@ def pull_decennial(key):
             continue
         G = geos(y, ds, key, place)
         for m in M.DEC_MEASURES:
-            try:
-                g = find_group(y, ds, m["group"])
-                vs = group_vars(y, ds, g, acs=False)
-                if m["kind"] == "total":
-                    names = match(vs, ["TOTAL"], what=f"in {g}")
-                elif m["kind"] == "label":
-                    names = match(vs, m["path"], what=f"in {g}")
-                else:
-                    names = age65_vars(vs)
-                note = f"{g}: " + "; ".join(f"{n}={vs[n] or 'total'}" for n in names)
-                log(f"  {m['id']}: {note}")
-            except Exception as e:
-                log(f"  MISSING {m['id']} {y}: {e}")
-                continue
-            for gname, geo in G.items():
+            specs = [m] + m.get("alts", [])
+            for si, spec in enumerate(specs):
+                sds = spec.get("dataset", ds) if si else ds
                 try:
-                    vals = fetch(y, ds, names, geo, key)
+                    g = find_group(y, sds, spec["group"])
+                    vs = group_vars(y, sds, g, acs=False)
+                    if spec["kind"] == "total":
+                        names = match(vs, ["TOTAL"], what=f"in {g}")
+                    elif spec["kind"] == "label":
+                        names = match(vs, spec["path"], what=f"in {g}")
+                    else:
+                        names = age65_vars(vs)
                 except Exception as e:
-                    log(f"    {gname}: not available ({str(e)[:80]})")
+                    log(f"  {'MISSING' if si == len(specs) - 1 else 'try next'} {m['id']} {y} ({sds}): {e}")
+                    if si == len(specs) - 1:
+                        diagnose(y, sds, m["id"])
                     continue
-                if vals is None:
+                note = f"{sds} {g}: " + "; ".join(f"{n}={vs[n] or 'total'}" for n in names)
+                got = {}
+                for gname, geo in G.items():
+                    try:
+                        vals = fetch(y, sds, names, geo, key)
+                    except Exception as e:
+                        log(f"    {gname}: not available ({str(e)[:80]})")
+                        continue
+                    if vals is not None:
+                        got[gname] = sum_est(vals, names)
+                if got.get("city") is None and si < len(specs) - 1:
+                    log(f"  try next {m['id']} {y}: {g} has no city value")
                     continue
-                add(m["id"], gname, str(y), sum_est(vals, names), None, f"Census {y} {ds}", note)
+                if got.get("city") is None:
+                    log(f"  MISSING {m['id']} {y}: {g} returned no city value")
+                    diagnose(y, sds, m["id"])
+                log(f"  {m['id']}: {note}")
+                for gname, est in got.items():
+                    add(m["id"], gname, str(y), est, None, f"Census {y} {sds}", note)
+                break
+
+
+def diagnose(year, dataset, mid):
+    """Log candidate groups so the next fix is one step."""
+    words = ("group quarters", "65 years") if ("gq" in mid or "65" in mid) else ("total",)
+    try:
+        gs = _group_cache.get((year, dataset)) or get_json(f"{API}/{year}/{dataset}/groups.json")["groups"]
+    except Exception:
+        return
+    hits = [f"{g['name']}: {g['description']}" for g in gs if any(w in g["description"].lower() for w in words)]
+    for h in hits[:15]:
+        log(f"    candidate {h}")
 
 
 def derive_decennial():
@@ -354,6 +380,35 @@ def pull_boundaries(place_code):
         f["properties"] = {"role": role, "geoid": geoid, "name": f["properties"].get("NAME"), "layer": lname}
         feats.append(f)
         log(f"  {role}: {f['properties']['name']} (GEOID {geoid}) from layer '{lname}'")
+    # Every tract the city touches, with the share of city area in each.
+    city = [f for f in feats if f["properties"]["role"] == "city"]
+    if city:
+        try:
+            from shapely.geometry import shape
+            cg = shape(city[0]["geometry"])
+            minx, miny, maxx, maxy = cg.bounds
+            lid, lname = layer_id(r"^Census Tracts$")
+            q = {"geometry": f"{minx},{miny},{maxx},{maxy}", "geometryType": "esriGeometryEnvelope",
+                 "inSR": "4326", "spatialRel": "esriSpatialRelIntersects", "outFields": "GEOID,NAME",
+                 "outSR": "4326", "returnGeometry": "true", "f": "geojson"}
+            js = get_json(f"{TIGER}/{lid}/query", q) or {}
+            fs = js.get("features") or [esri_to_geojson(f) for f in (get_json(f"{TIGER}/{lid}/query", {**q, "f": "json"}) or {}).get("features", [])]
+            for f in fs:
+                share = shape(f["geometry"]).intersection(cg).area / cg.area * 100
+                gid = f["properties"].get("GEOID")
+                if share < 0.5:
+                    continue
+                log(f"  city area in tract {f['properties'].get('NAME')} ({gid}): {share:.1f}%")
+                if gid != M.STATE_FIPS + M.COUNTY_FIPS + M.TRACT:
+                    f["properties"] = {"role": "tract_other", "geoid": gid, "name": f["properties"].get("NAME"),
+                                       "city_share": round(share, 1), "layer": lname}
+                    feats.append(f)
+                else:
+                    [x for x in feats if x["properties"]["role"] == "tract"][0]["properties"]["city_share"] = round(share, 1)
+        except ImportError:
+            log("  shapely not installed; skipped tract overlap (pip install -r requirements.txt)")
+        except Exception as e:
+            log(f"  tract overlap failed: {e}")
     return {"type": "FeatureCollection", "features": feats}
 
 

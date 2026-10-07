@@ -1,34 +1,37 @@
 Decennial 2000 (dec/sf1)
   place 2000: Wrightsville city, Arkansas = 05-76970
-  pop_total: P001: P001001=total
+  pop_total: dec/sf1 P001: P001001=total
   note: 2 groups match /^group quarters population by (major )?group quarters type$/ in 2000; using P037 (GROUP QUARTERS POPULATION BY GROUP QUARTERS TYPE [9])
-  pop_gq: P037: P037001=total
-  housing_units: H003: H003001=total
-  households: H003: H003002=occupied
+  pop_gq: dec/sf1 P037: P037001=total
+  housing_units: dec/sf1 H003: H003001=total
+  households: dec/sf1 H003: H003002=occupied
   note: 3 groups match /^sex by age( for selected age categories)?$/ in 2000; using P012 (SEX BY AGE [49])
-  age65_total: P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+  age65_total: dec/sf1 P012: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
   note: 2 groups match /^group quarters population by sex by age( by group quarters type)?$/ in 2000; using P038 (GROUP QUARTERS POPULATION BY SEX BY AGE BY GROUP QUARTERS TYPE [57])
-  age65_gq: P038: P038021=male>65 years and over; P038049=female>65 years and over
+  age65_gq: dec/sf1 P038: P038021=male>65 years and over; P038049=female>65 years and over
 Decennial 2010 (dec/sf1)
   place 2010: Wrightsville city, Arkansas = 05-76970
-  pop_total: P1: P001001=total
+  pop_total: dec/sf1 P1: P001001=total
   note: 2 groups match /^group quarters population by (major )?group quarters type$/ in 2010; using P42 (GROUP QUARTERS POPULATION BY GROUP QUARTERS TYPE)
-  pop_gq: P42: P042001=total
-  housing_units: H3: H003001=total
-  households: H3: H003002=occupied
+  pop_gq: dec/sf1 P42: P042001=total
+  housing_units: dec/sf1 H3: H003001=total
+  households: dec/sf1 H3: H003002=occupied
   note: 2 groups match /^sex by age( for selected age categories)?$/ in 2010; using P12 (SEX BY AGE)
-  age65_total: P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
+  age65_total: dec/sf1 P12: P012020=male>65 and 66 years; P012021=male>67 to 69 years; P012022=male>70 to 74 years; P012023=male>75 to 79 years; P012024=male>80 to 84 years; P012025=male>85 years and over; P012044=female>65 and 66 years; P012045=female>67 to 69 years; P012046=female>70 to 74 years; P012047=female>75 to 79 years; P012048=female>80 to 84 years; P012049=female>85 years and over
   note: 3 groups match /^group quarters population by sex by age( by group quarters type)?$/ in 2010; using P43 (GROUP QUARTERS POPULATION BY SEX BY AGE BY GROUP QUARTERS TYPE)
-  age65_gq: P43: P043023=male>65 years and over; P043054=female>65 years and over
+  age65_gq: dec/sf1 P43: P043023=male>65 years and over; P043054=female>65 years and over
 Decennial 2020 (dec/dhc)
   place 2020: Wrightsville city, Arkansas = 05-76970
-  pop_total: P1: P1_001N=total
-  MISSING pop_gq 2020: No group matching /^group quarters population by (major )?group quarters type$/ in 2020 dec/dhc
-  housing_units: H3: H3_001N=total
-  households: H3: H3_002N=occupied
-  age65_total: P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
+  pop_total: dec/dhc P1: P1_001N=total
+  try next pop_gq 2020 (dec/dhc): No group matching /^group quarters population by (major )?group quarters type$/ in 2020 dec/dhc
+  pop_gq: dec/pl P5: P5_001N=total
+  housing_units: dec/dhc H3: H3_001N=total
+  households: dec/dhc H3: H3_002N=occupied
+  age65_total: dec/dhc P12: P12_020N=male>65 and 66 years; P12_021N=male>67 to 69 years; P12_022N=male>70 to 74 years; P12_023N=male>75 to 79 years; P12_024N=male>80 to 84 years; P12_025N=male>85 years and over; P12_044N=female>65 and 66 years; P12_045N=female>67 to 69 years; P12_046N=female>70 to 74 years; P12_047N=female>75 to 79 years; P12_048N=female>80 to 84 years; P12_049N=female>85 years and over
   note: 2 groups match /^group quarters population by sex by age( by group quarters type)?$/ in 2020; using PCO1 (GROUP QUARTERS POPULATION BY SEX BY AGE)
-  age65_gq: PCO1: PCO1_016N=male>65 to 69 years; PCO1_017N=male>70 to 74 years; PCO1_018N=male>75 to 79 years; PCO1_019N=male>80 to 84 years; PCO1_020N=male>85 years and over; PCO1_035N=female>65 to 69 years; PCO1_036N=female>70 to 74 years; PCO1_037N=female>75 to 79 years; PCO1_038N=female>80 to 84 years; PCO1_039N=female>85 years and over
+  try next age65_gq 2020: PCO1 has no city value
+  note: 10 groups match /relationship.*65 years and over/ in 2020; using PCT9 (HOUSEHOLD TYPE BY RELATIONSHIP FOR THE POPULATION 65 YEARS AND OVER)
+  age65_gq: dec/dhc PCT9: PCT9_014N=in group quarters
 ACS 5-year 2005 to 2009
   place 2009: Wrightsville city, Arkansas = 05-76970
   median_hh_income: B19013: num=B19013_001E
@@ -73,3 +76,5 @@ ACS 5-year 2020 to 2024
 Boundaries (TIGERweb, Census 2020 vintage)
   city: Wrightsville city (GEOID 0576970) from layer 'Incorporated Places'
   tract: Census Tract 40.05 (GEOID 05119004005) from layer 'Census Tracts'
+  city area in tract Census Tract 40.05 (05119004005): 79.7%
+  city area in tract Census Tract 40.07 (05119004007): 20.3%
