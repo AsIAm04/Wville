@@ -1,0 +1,414 @@
+"""Pull Wrightsville dashboard data from the Census API and TIGERweb.
+
+Run from the repo root:
+    python pull/pull_data.py
+
+Needs CENSUS_API_KEY in the environment or in a .env file at the repo root.
+Writes:
+    data/series.csv          tidy table, one row per measure x geography x period
+    data/pull_log.txt        every variable used, with its published label
+    data/boundaries.geojson  city and tract 40.05 outlines (2020 vintage)
+    data/embed_block.js      paste over the WV_SERIES block in the embed
+"""
+import csv, json, math, os, re, sys, datetime, pathlib
+import requests
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import measures as M
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+API = "https://api.census.gov/data"
+TIGER = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer"
+Z90 = 1.645
+LOG = []
+
+
+def log(msg):
+    print(msg)
+    LOG.append(msg)
+
+
+def api_key():
+    key = os.environ.get("CENSUS_API_KEY")
+    env = ROOT / ".env"
+    if not key and env.exists():
+        for line in env.read_text().splitlines():
+            if line.startswith("CENSUS_API_KEY="):
+                key = line.split("=", 1)[1].strip()
+    if not key:
+        sys.exit("CENSUS_API_KEY not set. Copy .env.example to .env and add your key.")
+    return key
+
+
+SESSION = requests.Session()
+
+
+def get_json(url, params=None):
+    r = SESSION.get(url, params=params, timeout=60)
+    if r.status_code == 204 or not r.text.strip():
+        return None
+    if r.status_code != 200:
+        raise RuntimeError(f"HTTP {r.status_code} for {r.url}: {r.text[:200]}")
+    try:
+        return r.json()
+    except ValueError:
+        raise RuntimeError(f"Non-JSON response for {r.url}: {r.text[:200]}")
+
+
+# ---------------------------------------------------------------- labels
+def norm(s):
+    return re.sub(r"\s*\[\d+\]\s*", "", s).strip().rstrip(":").strip().lower()
+
+
+def label_path(label):
+    """'Estimate!!Total:!!Owner occupied:!!No vehicle available'
+    -> 'owner occupied>no vehicle available'. Top-level Total -> ''."""
+    parts = [norm(p) for p in label.split("!!")]
+    parts = [p for p in parts if p not in ("estimate", "")]
+    if parts and parts[0] == "total":
+        parts = parts[1:]
+    return ">".join(parts)
+
+
+def is_value_var(name, meta, acs):
+    lab = meta.get("label", "")
+    if "annotation" in lab.lower() or name in ("GEO_ID", "NAME"):
+        return False
+    if acs:
+        return name.endswith("E") and lab.lower().startswith("estimate")
+    return not name.endswith(("NA", "EA", "MA"))
+
+
+_group_cache = {}
+
+
+def find_group(year, dataset, desc_regex):
+    key = (year, dataset)
+    if key not in _group_cache:
+        js = get_json(f"{API}/{year}/{dataset}/groups.json")
+        _group_cache[key] = js["groups"] if js else []
+    hits = [g for g in _group_cache[key] if re.search(desc_regex, norm(g["description"]))]
+    if not hits:
+        raise LookupError(f"No group matching /{desc_regex}/ in {year} {dataset}")
+    hits.sort(key=lambda g: (len(g["name"]), g["name"]))
+    if len(hits) > 1:
+        log(f"  note: {len(hits)} groups match /{desc_regex}/ in {year}; using {hits[0]['name']} ({hits[0]['description']})")
+    return hits[0]["name"]
+
+
+def group_vars(year, dataset, group, acs):
+    js = get_json(f"{API}/{year}/{dataset}/groups/{group}.json")
+    if not js:
+        raise LookupError(f"Group {group} not available in {year} {dataset}")
+    out = {}
+    for name, meta in js["variables"].items():
+        if is_value_var(name, meta, acs):
+            out[name] = label_path(meta["label"])
+    return out
+
+
+def match(vars_, regexes, required=True, what=""):
+    names = []
+    for rx in regexes:
+        if rx == "TOTAL":
+            hit = [n for n, p in vars_.items() if p == ""]
+            if not hit and len(vars_) == 1:      # single-line tables (e.g. a median)
+                hit = list(vars_)
+        else:
+            hit = [n for n, p in vars_.items() if re.search(rx, p)]
+        if not hit and required:
+            raise LookupError(f"No line matches /{rx}/ {what}")
+        names += hit
+    return sorted(set(names))
+
+
+def age65_vars(vars_):
+    out = []
+    for n, p in vars_.items():
+        parts = p.split(">")
+        if len(parts) == 2 and parts[0] in ("male", "female"):
+            m = re.match(r"^(\d+)", parts[1])
+            if m and int(m.group(1)) >= 65 and "year" in parts[1]:
+                out.append(n)
+    if not out:
+        raise LookupError("No [sex > age 65+] lines found")
+    return sorted(out)
+
+
+# ---------------------------------------------------------------- geographies
+def geos(year, dataset, key, place_code):
+    return {
+        "city": {"for": f"place:{place_code}", "in": f"state:{M.STATE_FIPS}"},
+        "tract": {"for": f"tract:{M.TRACT}", "in": f"state:{M.STATE_FIPS} county:{M.COUNTY_FIPS}"},
+        "county": {"for": f"county:{M.COUNTY_FIPS}", "in": f"state:{M.STATE_FIPS}"},
+        "state": {"for": f"state:{M.STATE_FIPS}"},
+    }
+
+
+def resolve_place(year, dataset, key):
+    js = get_json(f"{API}/{year}/{dataset}", {"get": "NAME", "for": "place:*", "in": f"state:{M.STATE_FIPS}", "key": key})
+    hits = [r for r in js[1:] if re.match(M.PLACE_NAME_REGEX, r[0])]
+    if len(hits) != 1:
+        raise LookupError(f"Expected one Wrightsville place in {year}, found {len(hits)}")
+    log(f"  place {year}: {hits[0][0]} = {M.STATE_FIPS}-{hits[0][-1]}")
+    return hits[0][-1]
+
+
+def fetch(year, dataset, names, geo, key):
+    """Fetch variables (chunked to 45) for one geography. Returns {var: float|None}."""
+    out = {}
+    for i in range(0, len(names), 45):
+        chunk = names[i:i + 45]
+        params = {"get": ",".join(chunk), "key": key, **geo}
+        js = get_json(f"{API}/{year}/{dataset}", params)
+        if not js:
+            return None
+        head, row = js[0], js[1]
+        for n in chunk:
+            v = row[head.index(n)]
+            try:
+                f = float(v)
+                out[n] = None if f < -555555 else f   # Census jam values are large negatives
+            except (TypeError, ValueError):
+                out[n] = None
+    return out
+
+
+# ---------------------------------------------------------------- math
+def sum_est(vals, names):
+    xs = [vals.get(n) for n in names]
+    return None if any(x is None for x in xs) else sum(xs)
+
+
+def sum_moe(moes, names):
+    xs = [moes.get(n) for n in names]
+    return None if any(x is None for x in xs) else math.sqrt(sum(x * x for x in xs))
+
+
+def share_moe(num, den, moe_num, moe_den):
+    """Census approximation for a proportion; falls back to ratio form if negative."""
+    if None in (num, den, moe_num, moe_den) or den == 0:
+        return None
+    p = num / den
+    inside = moe_num ** 2 - p ** 2 * moe_den ** 2
+    if inside < 0:
+        inside = moe_num ** 2 + p ** 2 * moe_den ** 2
+    return math.sqrt(inside) / den
+
+
+def differs(a, b):
+    """90% test: are two estimates statistically different?"""
+    if None in (a.get("est"), b.get("est"), a.get("moe"), b.get("moe")):
+        return None
+    se = math.sqrt((a["moe"] / Z90) ** 2 + (b["moe"] / Z90) ** 2)
+    if se == 0:
+        return a["est"] != b["est"]
+    return abs(a["est"] - b["est"]) / se > Z90
+
+
+# ---------------------------------------------------------------- pulls
+ROWS = []
+
+
+def add(mid, geo, period, est, moe, source, var_note):
+    ROWS.append({"measure": mid, "geo": geo, "period": period, "est": est, "moe": moe,
+                 "source": source, "variables": var_note})
+
+
+def pull_decennial(key):
+    for v in M.DECENNIAL:
+        y, ds = v["year"], v["dataset"]
+        log(f"Decennial {y} ({ds})")
+        try:
+            place = resolve_place(y, ds, key)
+        except Exception as e:
+            log(f"  SKIP {y}: {e}")
+            continue
+        G = geos(y, ds, key, place)
+        for m in M.DEC_MEASURES:
+            try:
+                g = find_group(y, ds, m["group"])
+                vs = group_vars(y, ds, g, acs=False)
+                if m["kind"] == "total":
+                    names = match(vs, ["TOTAL"], what=f"in {g}")
+                elif m["kind"] == "label":
+                    names = match(vs, m["path"], what=f"in {g}")
+                else:
+                    names = age65_vars(vs)
+                note = f"{g}: " + "; ".join(f"{n}={vs[n] or 'total'}" for n in names)
+                log(f"  {m['id']}: {note}")
+            except Exception as e:
+                log(f"  MISSING {m['id']} {y}: {e}")
+                continue
+            for gname, geo in G.items():
+                try:
+                    vals = fetch(y, ds, names, geo, key)
+                except Exception as e:
+                    log(f"    {gname}: not available ({str(e)[:80]})")
+                    continue
+                if vals is None:
+                    continue
+                add(m["id"], gname, str(y), sum_est(vals, names), None, f"Census {y} {ds}", note)
+
+
+def derive_decennial():
+    idx = {(r["measure"], r["geo"], r["period"]): r["est"] for r in ROWS}
+    periods = sorted({r["period"] for r in ROWS if r["source"].startswith("Census") and "acs" not in r["source"]})
+    for d in M.DEC_DERIVED:
+        for geo in ("city", "tract", "county", "state"):
+            for p in periods:
+                get = lambda k: idx.get((k, geo, p))
+                f = d["formula"]
+                est = None
+                if f[0] == "minus" and None not in (get(f[1]), get(f[2])):
+                    est = get(f[1]) - get(f[2])
+                elif f[0] == "share" and None not in (get(f[1]), get(f[2])) and get(f[2]):
+                    est = get(f[1]) / get(f[2]) * 100
+                elif f[0] == "share_of_diff" and None not in (get(f[1]), get(f[2]), get(f[3]), get(f[4])):
+                    den = get(f[3]) - get(f[4])
+                    est = (get(f[1]) - get(f[2])) / den * 100 if den else None
+                if est is not None:
+                    add(d["id"], geo, p, est, None, "Derived from Census counts", str(f))
+
+
+def pull_acs(key):
+    for end in M.ACS_END_YEARS:
+        ds, period = "acs/acs5", f"{end-4} to {end}"
+        log(f"ACS 5-year {period}")
+        try:
+            place = resolve_place(end, ds, key)
+        except Exception as e:
+            log(f"  SKIP {period}: {e}")
+            continue
+        G = geos(end, ds, key, place)
+        for m in M.ACS_MEASURES:
+            try:
+                vs = group_vars(end, ds, m["group"], acs=True)
+                num = match(vs, m["num"], what=f"in {m['group']} {end}")
+                den = match(vs, m.get("den", []), what=f"in {m['group']} {end}") if m.get("den") else []
+                dmin = match(vs, m.get("den_minus", []), what=f"in {m['group']} {end}") if m.get("den_minus") else []
+            except Exception as e:
+                log(f"  MISSING {m['id']} {end}: {e}")
+                continue
+            note = f"{m['group']}: num={','.join(num)}" + (f" den={','.join(den)}" if den else "") + (f" minus={','.join(dmin)}" if dmin else "")
+            log(f"  {m['id']}: {note}")
+            allv = num + den + dmin
+            mnames = [n[:-1] + "M" for n in allv]
+            for gname, geo in G.items():
+                try:
+                    vals = fetch(end, ds, allv + mnames, geo, key)
+                except Exception as e:
+                    log(f"    {gname}: not available ({str(e)[:80]})")
+                    continue
+                if vals is None:
+                    continue
+                E = {n: vals.get(n) for n in allv}
+                Mo = {n: vals.get(n[:-1] + "M") for n in allv}
+                ne, nm = sum_est(E, num), sum_moe(Mo, num)
+                if m["kind"] == "value":
+                    add(m["id"], gname, period, ne, nm, f"ACS 5-year {period}", note)
+                    continue
+                de, dm = sum_est(E, den), sum_moe(Mo, den)
+                if dmin:
+                    me, mm = sum_est(E, dmin), sum_moe(Mo, dmin)
+                    de = None if None in (de, me) else de - me
+                    dm = None if None in (dm, mm) else math.sqrt(dm ** 2 + mm ** 2)
+                est = ne / de * 100 if None not in (ne, de) and de else None
+                moe = share_moe(ne, de, nm, dm)
+                add(m["id"], gname, period, est, moe * 100 if moe is not None else None, f"ACS 5-year {period}", note)
+
+
+# ---------------------------------------------------------------- boundaries
+def esri_to_geojson(feat):
+    rings = feat["geometry"]["rings"]
+    return {"type": "Feature", "properties": feat["attributes"],
+            "geometry": {"type": "Polygon", "coordinates": rings}}
+
+
+def pull_boundaries(place_code):
+    log("Boundaries (TIGERweb, Census 2020 vintage)")
+    layers = get_json(TIGER, {"f": "json"})["layers"]
+    def layer_id(rx):
+        hits = [l for l in layers if re.search(rx, l["name"], re.I)]
+        if not hits:
+            raise LookupError(f"No TIGERweb layer matching /{rx}/")
+        return hits[0]["id"], hits[0]["name"]
+    feats = []
+    for role, rx, geoid in (("city", r"^Incorporated Places$", M.STATE_FIPS + place_code),
+                            ("tract", r"^Census Tracts$", M.STATE_FIPS + M.COUNTY_FIPS + M.TRACT)):
+        lid, lname = layer_id(rx)
+        q = {"where": f"GEOID='{geoid}'", "outFields": "GEOID,NAME", "outSR": "4326", "returnGeometry": "true"}
+        try:
+            js = get_json(f"{TIGER}/{lid}/query", {**q, "f": "geojson"})
+            fs = js.get("features", []) if js else []
+        except Exception:
+            fs = []
+        if not fs:
+            js = get_json(f"{TIGER}/{lid}/query", {**q, "f": "json"})
+            fs = [esri_to_geojson(f) for f in (js or {}).get("features", [])]
+        if len(fs) != 1:
+            log(f"  {role}: expected 1 feature for GEOID {geoid} in '{lname}', got {len(fs)}")
+            continue
+        f = fs[0]
+        f["properties"] = {"role": role, "geoid": geoid, "name": f["properties"].get("NAME"), "layer": lname}
+        feats.append(f)
+        log(f"  {role}: {f['properties']['name']} (GEOID {geoid}) from layer '{lname}'")
+    return {"type": "FeatureCollection", "features": feats}
+
+
+# ---------------------------------------------------------------- outputs
+def build_series():
+    labels = {m["id"]: m for m in M.DEC_MEASURES + M.DEC_DERIVED + M.ACS_MEASURES}
+    out = {}
+    for r in ROWS:
+        m = out.setdefault(r["measure"], {"label": labels[r["measure"]]["label"],
+                                          "unit": labels[r["measure"]].get("unit", "count"),
+                                          "universe": labels[r["measure"]].get("universe"),
+                                          "note": labels[r["measure"]].get("note"),
+                                          "source": "ACS 5-year" if r["source"].startswith("ACS") else "Decennial Census",
+                                          "geos": {}})
+        m["geos"].setdefault(r["geo"], []).append(
+            {"period": r["period"], "est": None if r["est"] is None else round(r["est"], 2),
+             "moe": None if r["moe"] is None else round(r["moe"], 2)})
+    for m in out.values():
+        for g in m["geos"].values():
+            g.sort(key=lambda x: x["period"])
+        c, k = m["geos"].get("city", []), m["geos"].get("county", [])
+        if c and k and c[-1]["period"] == k[-1]["period"]:
+            d = differs(c[-1], k[-1])
+            m["city_vs_county"] = None if d is None else ("different" if d else "not different")
+    return out
+
+
+def main():
+    key = api_key()
+    DATA.mkdir(exist_ok=True)
+    pull_decennial(key)
+    derive_decennial()
+    pull_acs(key)
+    place2020 = resolve_place(2020, "dec/dhc", key)
+    try:
+        bounds = pull_boundaries(place2020)
+    except Exception as e:
+        log(f"  boundaries failed: {e}")
+        bounds = {"type": "FeatureCollection", "features": []}
+
+    with open(DATA / "series.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["measure", "geo", "period", "est", "moe", "source", "variables"])
+        w.writeheader()
+        w.writerows(ROWS)
+    (DATA / "boundaries.geojson").write_text(json.dumps(bounds))
+    series = build_series()
+    stamp = datetime.date.today().isoformat()
+    block = {"pulled": stamp, "measures": series, "boundaries": bounds}
+    (DATA / "embed_block.js").write_text(
+        "/* ===== WV_SERIES: generated by pull/pull_data.py on " + stamp + ". Paste over the old block. ===== */\n"
+        "var WV_SERIES = " + json.dumps(block, separators=(",", ":")) + ";\n/* ===== end WV_SERIES ===== */\n")
+    (DATA / "pull_log.txt").write_text("\n".join(LOG) + "\n")
+    missing = [l for l in LOG if "MISSING" in l or "SKIP" in l]
+    print(f"\nDone: {len(ROWS)} values, {len(bounds['features'])} boundaries, {len(missing)} gaps (see data/pull_log.txt).")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,381 @@
+<!-- Wrightsville Community Conditions Dashboard (v2)
+     Squarespace 7.1: paste this whole file into a Code Block (HTML mode).
+     Hand-curated values: edit the WV_DATA block.
+     Census values and boundaries: run pull/pull_data.py, then paste data/embed_block.js
+     over the WV_SERIES block. Never edit WV_SERIES by hand.
+     Status values: verified | supplied | inferred | pending -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<div id="wv-dash">
+<style>
+#wv-dash{--ink:#1E2A30;--slate:#23465A;--green:#4E6B4A;--paper:#FFFFFF;--wash:#F1F4F5;--rule:#C9D3D8;--muted:#5C6870;
+--ok:#2F6B45;--ok-bg:#E3EFE6;--warn:#8A5F00;--warn-bg:#F6ECD3;--sup:#2F5D8A;--sup-bg:#E2EBF4;--pend:#5C6870;--pend-bg:#ECEFF1;
+font-family:"Public Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);
+font-size:16px;line-height:1.5;max-width:1080px;margin:0 auto;padding:24px 20px 32px;box-sizing:border-box;font-variant-numeric:tabular-nums}
+#wv-dash *,#wv-dash *::before,#wv-dash *::after{box-sizing:border-box}
+#wv-dash *{line-height:inherit;font-family:inherit;letter-spacing:normal;text-transform:none}
+#wv-dash p,#wv-dash h2,#wv-dash h3,#wv-dash table{margin:0}
+#wv-dash a{color:var(--slate);text-decoration:underline;text-underline-offset:2px}
+#wv-dash a:focus-visible,#wv-dash button:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+#wv-dash .wv-top{border-bottom:2px solid var(--slate);padding-bottom:16px;margin-bottom:24px}
+#wv-dash .wv-place{font-size:15px;font-weight:600;color:var(--green);margin-bottom:4px}
+#wv-dash .wv-title{font-size:clamp(26px,4vw,36px);font-weight:700;line-height:1.15!important;color:var(--slate);letter-spacing:-0.01em}
+#wv-dash .wv-sub{margin-top:8px;max-width:68ch;color:var(--muted)}
+#wv-dash .wv-split{margin-bottom:28px}
+#wv-dash .wv-split-head{font-size:18px;font-weight:600;margin-bottom:12px;max-width:68ch}
+#wv-dash .wv-bar{display:flex;width:100%;height:56px;border-radius:4px;overflow:hidden}
+#wv-dash .wv-seg{display:block;height:100%;position:relative}
+#wv-dash .wv-seg-hh{background:var(--green)}
+#wv-dash .wv-seg-gq{background:repeating-linear-gradient(135deg,#9AA9B1 0 6px,#AEBBC2 6px 12px)}
+#wv-dash .wv-keys{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:12px}
+#wv-dash .wv-key{display:flex;align-items:baseline;gap:8px}
+#wv-dash .wv-key b{font-size:28px;font-weight:700;color:var(--slate)}
+#wv-dash .wv-key span{color:var(--muted);font-size:14px}
+#wv-dash .wv-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;flex:none;align-self:center}
+#wv-dash .wv-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+#wv-dash .wv-tab{font:inherit;line-height:1.3;font-size:14px;font-weight:600;padding:8px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--slate);border-radius:20px;cursor:pointer}
+#wv-dash .wv-tab[aria-selected="true"]{background:var(--slate);border-color:var(--slate);color:#fff}
+#wv-dash .wv-panel h2{font-size:22px;font-weight:700;color:var(--slate);margin-bottom:6px}
+#wv-dash .wv-lead{max-width:72ch;margin-bottom:16px}
+#wv-dash .wv-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:6px}
+#wv-dash table{border:0;color:var(--ink);font-family:inherit;width:100%;border-collapse:collapse;min-width:720px;font-size:14px}
+#wv-dash th{text-align:left;font-weight:600;color:var(--muted);background:var(--wash);padding:10px 12px;border-bottom:1px solid var(--rule)}
+#wv-dash td{color:var(--ink);padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+#wv-dash tr:last-child td{border-bottom:0}
+#wv-dash td.wv-num{font-weight:600;white-space:nowrap}
+#wv-dash td.wv-pend{color:var(--muted);font-weight:400;font-style:italic}
+#wv-dash .wv-note{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+#wv-dash .wv-chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+#wv-dash .wv-chip.verified{color:var(--ok);background:var(--ok-bg)}
+#wv-dash .wv-chip.inferred{color:var(--warn);background:var(--warn-bg)}
+#wv-dash .wv-chip.supplied{color:var(--sup);background:var(--sup-bg)}
+#wv-dash .wv-chip.pending{color:var(--pend);background:var(--pend-bg)}
+#wv-dash .wv-block{margin-top:20px}
+#wv-dash .wv-block h3{font-size:16px;font-weight:700;margin-bottom:8px}
+#wv-dash ul.wv-list{margin:0;padding-left:20px;max-width:76ch}
+#wv-dash ul.wv-list li{margin-bottom:8px}
+#wv-dash ol.wv-time{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+#wv-dash ol.wv-time li{position:relative;padding:0 0 14px 18px;max-width:76ch}
+#wv-dash ol.wv-time li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--slate)}
+#wv-dash .wv-date{display:block;font-weight:700;font-size:14px;color:var(--slate)}
+#wv-dash .wv-legend{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+#wv-dash .wv-legend-row{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:10px;align-items:center}
+@media (max-width:600px){#wv-dash{padding:16px 12px 24px}#wv-dash .wv-key b{font-size:22px}#wv-dash .wv-bar{height:40px}}
+@media (prefers-reduced-motion:reduce){#wv-dash *{transition:none!important}}
+#wv-dash .wv-mapwrap{margin-bottom:28px}
+#wv-dash .wv-maphead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+#wv-dash .wv-maphead h2{font-size:18px;font-weight:600;color:var(--ink)}
+#wv-dash .wv-map{display:block;width:100%;height:360px;border:1px solid var(--rule);border-radius:6px;background:var(--wash)}
+#wv-dash .wv-mapempty{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:14px}
+#wv-dash .wv-mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin-top:8px}
+#wv-dash .wv-mk{display:inline-block;width:22px;height:12px;vertical-align:-1px;margin-right:6px;border-radius:2px}
+#wv-dash .wv-mk-city{background:rgba(35,70,90,.28);border:2px solid #23465A}
+#wv-dash .wv-mk-tract{border:2px dashed #4E6B4A;background:transparent}
+#wv-dash .wv-toolbar{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:14px;color:var(--muted)}
+#wv-dash .wv-switch{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--rule);background:var(--paper);color:var(--slate);padding:5px 12px;border-radius:14px;cursor:pointer;line-height:1.3}
+#wv-dash .wv-switch[aria-pressed="true"]{background:var(--slate);border-color:var(--slate);color:#fff}
+#wv-dash td.wv-trend{width:200px;min-width:200px}
+#wv-dash.wv-simple .wv-trendcol{display:none}
+#wv-dash svg.wv-spark{display:block;overflow:visible}
+#wv-dash .wv-spark-cap{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+#wv-dash .wv-cmp{display:block;margin-top:4px}
+#wv-dash .wv-chip.diff{color:var(--slate);background:var(--sup-bg)}
+#wv-dash .wv-chip.nodiff{color:var(--pend);background:var(--pend-bg)}
+#wv-dash .wv-chip.caution{color:var(--warn);background:var(--warn-bg)}
+#wv-dash .leaflet-container{font-family:inherit;font-size:12px}
+#wv-dash .leaflet-container img{max-width:none!important;max-height:none!important}
+</style>
+
+<div class="wv-top">
+  <div class="wv-place">City of Wrightsville, Arkansas</div>
+  <div class="wv-title">Community conditions</div>
+  <p class="wv-sub">Public data on conditions in Wrightsville, kept to show where grant funding is needed and whether residents end up better off. Every figure is labeled with its source and how it was checked.</p>
+</div>
+
+<div class="wv-split" id="wv-split"></div>
+
+<div class="wv-mapwrap">
+  <div class="wv-maphead"><h2>Where the numbers come from</h2></div>
+  <p class="wv-lead">Many datasets report only for Census tract 40.05, which covers far more land and people than the city. Values marked "tract" describe the dashed area, not the town.</p>
+  <div class="wv-map" id="wv-map" role="img" aria-label="Map of Wrightsville city limits inside the larger Census tract 40.05"></div>
+  <div class="wv-mapkey"><span><span class="wv-mk wv-mk-city"></span>Wrightsville city limits</span><span><span class="wv-mk wv-mk-tract"></span>Census tract 40.05</span><span>Boundaries: Census TIGER, 2020</span></div>
+</div>
+
+<div class="wv-tabs" role="tablist" aria-label="Topics" id="wv-tabs"></div>
+<div class="wv-toolbar"><span>Change over time</span><button type="button" class="wv-switch" id="wv-trendswitch" aria-pressed="true">Shown</button></div>
+<div id="wv-panels"></div>
+<div class="wv-legend" id="wv-legend"></div>
+
+<script>
+(function(){
+/* ===== WV_DATA: hand-curated values. Leave city:"" for pending pulls. ===== */
+var WV_DATA = {
+  asOf: "October 6, 2026",
+  credit: "Prepared for the City of Wrightsville by As-I-Am Consulting Group.",
+  split: {official:1542, household:633, groupQuarters:909, year:"2020 Census",
+    source:{name:"Metroplan 2020 fact sheet", url:"https://metroplan.org/wp-content/uploads/2025/08/City-FactSheets2020_Wrightsville.pdf"}},
+  S: {
+    metro:{name:"Metroplan, Census 2020", url:"https://metroplan.org/wp-content/uploads/2025/08/City-FactSheets2020_Wrightsville.pdf"},
+    tract:{name:"Metroplan tract table", url:"https://metroplan.org/wp-content/uploads/2025/08/Pulaski_Tract_HH_Demog_2020.pdf"},
+    cr:{name:"Census Reporter", url:"https://censusreporter.org/profiles/14000US05119004005-census-tract-4005-pulaski-ar/"},
+    ppl:{name:"State Clean Water list, Aug 2026", url:"https://media.ark.org/agri/CWSRF-PPL-8.15.26.pdf"},
+    caw:{name:"Central Arkansas Water rates", url:"https://carkw.com/customer-service/water-rates/wrightsville-wastewater/"},
+    mw:{name:"Consent order summary", url:"https://www.mitchellwilliamslaw.com/getpdf.aspx?blog=13910"},
+    adg:{name:"Arkansas Democrat-Gazette, Oct 2023", url:"https://www.arkansasonline.com/news/2023/oct/23/efforts-underway-to-consolidate-wrightsvilles/"},
+    ada:{name:"Ark. Dept. of Agriculture, Jan 2023", url:"https://media.ark.org/agri/NRD-Water-and-Wastewater-Projects-Press-Release-January.pdf"},
+    eoaFire:{name:"Encyclopedia of Arkansas", url:"https://encyclopediaofarkansas.net/entries/negro-boys-industrial-school-fire-of-1959-5500/"},
+    eoaTown:{name:"Encyclopedia of Arkansas", url:"https://encyclopediaofarkansas.net/entries/wrightsville-pulaski-county-977/"},
+    usaleep:{name:"CDC NCHS USALEEP", url:"https://www.datalumos.org/datalumos/project/243058/version/V1/view"},
+    qoz:{name:"IRS Rev. Proc. 2026-14 coverage", url:"https://www.cpapracticeadvisor.com/2026/04/09/irs-gives-states-guidance-for-nominating-census-tracts-as-opportunity-zones/181320/"}
+  },
+  sections: [
+  {id:"pop", tab:"Population", title:"Population and households",
+   lead:"Wrightsville's official count includes 909 people held at the Department of Correction unit, annexed into the city in 1998. Measures of living conditions use only the 633 people in households.",
+   rows:[
+    {series:"pop_total", label:"Official population", city:"1,542", tract:"3,268", status:"verified", src:"metro", note:"Used for program eligibility"},
+    {series:"pop_household", label:"Household population", city:"633", tract:"1,906", status:"verified", src:"metro", note:"Base for all condition measures"},
+    {series:"pop_gq", label:"Group quarters population", city:"909", tract:"1,362", status:"verified", src:"tract", note:"Tract holds 453 more group-quarters residents outside the city (to identify)"},
+    {series:"households", label:"Households", city:"295", tract:"766", status:"verified", src:"tract"},
+    {series:"housing_units", label:"Housing units", city:"345", tract:"936", status:"verified", src:"metro"},
+    {label:"Population change, 2010 to 2020", city:"-27.1% (2,114 to 1,542)", tract:"-3.5%", status:"verified", src:"tract"},
+    {label:"Land area", city:"2.1 sq mi", tract:"48.7 sq mi", status:"verified", src:"cr"},
+    {series:"age65_household_share", label:"Share age 65 and older, households only", city:"", tract:"", status:"pending", src:null, note:"Answers the aging question; computed from group quarters by age"},
+    {series:"age65_total_share", label:"Share age 65 and older, all residents", city:"11.5%", tract:"", status:"supplied", src:null, note:"Includes the incarcerated population"},
+    {label:"Race and ethnicity, households only", city:"", tract:"", status:"pending", src:null, note:"Published shares include the incarcerated population; not yet in the pull script"}
+   ]},
+  {id:"water", tab:"Water and wastewater", title:"Wastewater system",
+   lead:"Three state consent orders since 2016. Central Arkansas Water operates and bills the system, but the state still lists its ownership takeover as an unfunded $11.8 million project.",
+   rows:[
+    {label:"State consent orders since 2016", city:"3", tract:"", status:"verified", src:"mw", note:"2016, 2017 amendment, 2022"},
+    {label:"Share of plant flow from city residents", city:"About 8%", tract:"", status:"verified", src:"adg", note:"About 67% from the prison unit and 25% from neighboring sewer board, per CAW (2023)"},
+    {label:"Ownership takeover funding", city:"$11.8M, unfunded", tract:"", status:"verified", src:"ppl", note:"Project 47 on state list as of Aug 15, 2026"},
+    {label:"Ownership status", city:"CAW operates; transfer pending", tract:"", status:"inferred", src:null, note:"CAW operates and bills; legal transfer appears pending. Confirm with CAW or DEQ"}
+   ],
+   timeline:[
+    {date:"Aug 2026", text:"Ownership takeover still listed as an unfunded $11.8 million project.", src:"ppl"},
+    {date:"Jun 2024", text:"CAW begins a Wrightsville wastewater availability charge to fund improvements.", src:"caw"},
+    {date:"Oct 2023", text:"City Council approves consolidation with CAW. A $5 million loan forgiveness award depends on it; the City bears pre-closing costs.", src:"adg"},
+    {date:"Jan 2023", text:"State approves a $103,000 loan to CAW for the Wrightsville project.", src:"ada"},
+    {date:"Oct 2022", text:"Third consent order: repeated effluent violations and flows regularly above plant design capacity.", src:"mw"},
+    {date:"Sep 2021", text:"City signs a wastewater system purchase agreement with CAW.", src:"mw"},
+    {date:"2016 to 2017", text:"First consent order and amendment for effluent, operation, and reporting violations.", src:"mw"}
+   ]},
+  {id:"health", tab:"Health", title:"Health and health care access",
+   lead:"Most health data exists only for the larger census tract. Insurance comes from the Census pull; the rest are pending.",
+   rows:[
+    {label:"Life expectancy at birth", city:"", tract:"", status:"pending", src:"usaleep", note:"Latest data covers 2010 to 2015; will be labeled dated"},
+    {label:"Diabetes, hypertension, obesity (adults)", city:"", tract:"", status:"pending", src:null, note:"CDC PLACES model-based estimates"},
+    {series:"uninsured_share", label:"Residents without health insurance", city:"", tract:"", status:"pending", src:null, note:"ACS; excludes institutionalized people"},
+    {label:"Health professional shortage areas", city:"", tract:"", status:"pending", src:null, note:"HRSA primary care, dental, mental health"}
+   ]},
+  {id:"income", tab:"Income, work, and food", title:"Income, work, education, and food access",
+   lead:"Income and poverty figures use household or noninstitutional universes only. Education and employment wait for a household-only source.",
+   rows:[
+    {series:"median_hh_income", label:"Median household income", city:"", tract:"", status:"pending", src:null},
+    {series:"poverty_rate", label:"Poverty rate", city:"", tract:"", status:"pending", src:null},
+    {series:"disability_share", label:"Residents with a disability", city:"", tract:"", status:"pending", src:null, note:"ACS; excludes institutionalized people"},
+    {label:"Adults 25+ without a high school diploma", city:"", tract:"", status:"pending", src:null, note:"Published figure includes the incarcerated population; household-only source needed"},
+    {label:"Share of adults employed", city:"", tract:"", status:"pending", src:null, note:"Published figure includes the incarcerated population; household-only source needed"},
+    {label:"Low and moderate income share", city:"", tract:"", status:"pending", src:null, note:"HUD; used for CDBG eligibility"},
+    {label:"Low income, low food access", city:"", tract:"", status:"pending", src:null, note:"USDA Food Access Research Atlas"},
+    {label:"Energy cost as share of income", city:"", tract:"", status:"pending", src:null, note:"DOE LEAD Tool"}
+   ]},
+  {id:"housing", tab:"Housing and transport", title:"Housing, transportation, and broadband",
+   lead:"Housing and vehicle figures come from the Census pull; broadband is pending.",
+   rows:[
+    {series:"owner_share", label:"Homeowner share", city:"", tract:"", status:"pending", src:null},
+    {series:"rent_burden_30", label:"Renters paying 30% or more of income", city:"", tract:"", status:"pending", src:null},
+    {series:"built_pre1980", label:"Homes built before 1980", city:"", tract:"", status:"pending", src:null},
+    {series:"no_vehicle_share", label:"Households without a vehicle", city:"", tract:"", status:"pending", src:null},
+    {label:"Locations without broadband service", city:"", tract:"", status:"pending", src:null, note:"FCC National Broadband Map"}
+   ]},
+  {id:"risk", tab:"Hazards and vulnerability", title:"Flood risk and vulnerability indices",
+   lead:"Pulls pending. Index values are tract-level and include the prison population, so they are shown as context only.",
+   rows:[
+    {label:"Area in a mapped flood zone", city:"", tract:"", status:"pending", src:null, note:"FEMA flood maps"},
+    {label:"National Risk Index rating", city:"", tract:"", status:"pending", src:null},
+    {label:"Social Vulnerability Index percentile", city:"", tract:"", status:"pending", src:null},
+    {label:"Environmental Justice Index percentile", city:"", tract:"", status:"pending", src:null}
+   ]},
+  {id:"jobs", tab:"Jobs", title:"Jobs and commuting",
+   lead:"Pulls pending. Incarcerated people are not counted in job data; the prison unit appears as a workplace.",
+   rows:[
+    {label:"Jobs located in the city", city:"", tract:"", status:"pending", src:null, note:"Census LEHD OnTheMap"},
+    {label:"Employed residents working outside the city", city:"", tract:"", status:"pending", src:null}
+   ]},
+  {id:"elig", tab:"Grant eligibility", title:"Grant eligibility status",
+   lead:"These fields feed the City's Grant Intelligence Portal. Never screen a grant by population alone; check each program's own rule.",
+   rows:[
+    {label:"County", city:"Pulaski County", tract:"", status:"verified", src:"eoaTown"},
+    {label:"Census tract", city:"40.05", tract:"", status:"inferred", src:null, note:"Confirm the city lies wholly within this tract"},
+    {label:"CDBG status", city:"Non-entitlement (state program)", tract:"", status:"inferred", src:null, note:"Confirm with Arkansas Economic Development Commission"},
+    {label:"Opportunity Zone", city:"", tract:"", status:"pending", src:"qoz", note:"New zones take effect Jan 1, 2027; check Arkansas nominations"},
+    {label:"USDA Rural Development eligibility", city:"", tract:"", status:"pending", src:null},
+    {label:"New Markets Tax Credit", city:"", tract:"", status:"pending", src:null}
+   ]},
+  {id:"history", tab:"History", title:"Historical record",
+   lead:"Documented history that bears on present conditions. Entries appear only when a source ties the history to Wrightsville itself.",
+   items:[
+    {text:"The State moved the Arkansas Negro Boys Industrial School to Wrightsville in the mid-1930s. The General Assembly decided farm labor was the appropriate treatment for the Black boys sent there. Wrightsville was then a mostly Black, unincorporated settlement.", src:"eoaFire"},
+    {text:"On March 5, 1959, 21 boys died in a dormitory locked from the outside. A 1956 report had documented failing buildings and undrinkable water. The grand jury blamed successive state administrations and the General Assembly for years of neglect.", src:"eoaFire"},
+    {text:"Wrightsville incorporated as a town in 1973. A Department of Correction unit opened on the former school land in 1981. The city annexed the 3,300-acre unit in 1998.", src:"eoaTown"}
+   ]},
+  {id:"watch", tab:"Watch list", title:"Watch list: data center baseline",
+   lead:"If the proposed data center goes forward, these baselines will show its effect on residents over time. None captured yet.",
+   rows:[
+    {label:"Residential electricity rate", city:"", tract:"", status:"pending", src:null},
+    {label:"Tree canopy on and near the site", city:"", tract:"", status:"pending", src:null},
+    {label:"Air permits at the site", city:"", tract:"", status:"pending", src:null},
+    {label:"Ozone and fine particles, nearest monitors", city:"", tract:"", status:"pending", src:null},
+    {label:"Traffic on Highway 365", city:"", tract:"", status:"pending", src:null},
+    {label:"Wastewater flows against plant capacity", city:"", tract:"", status:"pending", src:null},
+    {label:"Jobs located in the city, by sector", city:"", tract:"", status:"pending", src:null},
+    {label:"Assessed property value in and near the city", city:"", tract:"", status:"pending", src:null}
+   ]}
+  ]
+};
+/* ===== end WV_DATA ===== */
+
+/* ===== WV_SERIES: generated by pull/pull_data.py. Paste over the old block. ===== */
+var WV_SERIES = {"pulled":null,"measures":{},"boundaries":{"type":"FeatureCollection","features":[]}};
+/* ===== end WV_SERIES ===== */
+
+var LABELS={verified:"Verified",supplied:"Supplied",inferred:"Inferred",pending:"Pending"};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function src(k){var s=WV_DATA.S[k];return s?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.name)+'</a>':"";}
+function chip(st,txt){return '<span class="wv-chip '+st+'">'+(txt||LABELS[st])+'</span>';}
+function fmt(v,unit){
+  if(v===null||v===undefined)return "";
+  if(unit==="pct")return (Math.round(v*10)/10).toFixed(1)+"%";
+  if(unit==="usd")return "$"+Math.round(v).toLocaleString("en-US");
+  return Math.round(v).toLocaleString("en-US");
+}
+/* Reliability: coefficient of variation from a 90% margin of error */
+function cv(p){return (p&&p.moe!=null&&p.est)?(p.moe/1.645)/Math.abs(p.est):null;}
+function last(arr){return arr&&arr.length?arr[arr.length-1]:null;}
+function cellFromSeries(m,geo){
+  var p=last(m.geos[geo]); if(!p||p.est==null)return null;
+  var c=cv(p), txt=fmt(p.est,m.unit), note="";
+  if(p.moe!=null)txt+=' <span class="wv-note">\u00b1 '+fmt(p.moe,m.unit)+", "+esc(p.period)+"</span>";
+  else txt+=' <span class="wv-note">'+esc(p.period)+"</span>";
+  if(c!==null&&c>0.30)return {html:'<span class="wv-pend">Too uncertain to show</span><span class="wv-note">Survey range \u00b1 '+fmt(p.moe,m.unit)+" on "+fmt(p.est,m.unit)+"</span>",flag:"unreliable"};
+  if(c!==null&&c>0.15)note=chip("caution","Use with caution");
+  return {html:txt+(note?'<span class="wv-cmp">'+note+"</span>":""),flag:null};
+}
+/* Small trend chart: city points with likely-range whiskers; county line for rates and dollars */
+function spark(m){
+  var c=m.geos.city||[], k=(m.unit==="count")?[]:(m.geos.county||[]);
+  var pts=c.filter(function(p){return p.est!=null;});
+  if(pts.length<2)return '<span class="wv-spark-cap">'+(pts.length?"One period only":"No trend yet")+"</span>";
+  var periods=[];[c,k].forEach(function(s){s.forEach(function(p){if(periods.indexOf(p.period)<0)periods.push(p.period);});});
+  periods.sort();
+  var lo=Infinity,hi=-Infinity;
+  [c,k].forEach(function(s){s.forEach(function(p){if(p.est==null)return;var e=p.moe||0;lo=Math.min(lo,p.est-e);hi=Math.max(hi,p.est+e);});});
+  if(lo===hi){lo-=1;hi+=1;}
+  var W=180,H=56,P=6;
+  function x(per){return P+(W-2*P)*(periods.length===1?0.5:periods.indexOf(per)/(periods.length-1));}
+  function y(v){return H-P-(H-2*P)*(v-lo)/(hi-lo);}
+  var g="";
+  if(k.length>1){g+='<polyline fill="none" stroke="#9AA9B1" stroke-width="1.5" stroke-dasharray="4 3" points="'+k.filter(function(p){return p.est!=null;}).map(function(p){return x(p.period)+","+y(p.est);}).join(" ")+'"/>';}
+  g+='<polyline fill="none" stroke="#23465A" stroke-width="1.5" points="'+pts.map(function(p){return x(p.period)+","+y(p.est);}).join(" ")+'"/>';
+  pts.forEach(function(p){
+    if(p.moe)g+='<line x1="'+x(p.period)+'" x2="'+x(p.period)+'" y1="'+y(p.est-p.moe)+'" y2="'+y(p.est+p.moe)+'" stroke="#23465A" stroke-opacity=".45" stroke-width="3"/>';
+    g+='<circle cx="'+x(p.period)+'" cy="'+y(p.est)+'" r="3.5" fill="#23465A"><title>'+esc(p.period)+": "+fmt(p.est,m.unit)+(p.moe?" (\u00b1 "+fmt(p.moe,m.unit)+")":"")+"</title></circle>";
+  });
+  var first=pts[0],lastp=pts[pts.length-1];
+  function rng(x){return esc(String(x).replace(" to ","-"));}
+  var cap=rng(first.period)+" through "+rng(lastp.period)+(k.length>1?". Dashed: Pulaski County":"")+(pts.some(function(p){return p.moe;})?". Bars: likely range":"");
+  return '<svg class="wv-spark" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+" "+H+'" role="img" aria-label="Trend from '+rng(first.period)+" ("+fmt(first.est,m.unit)+") to "+rng(lastp.period)+" ("+fmt(lastp.est,m.unit)+')">'+g+'</svg><span class="wv-spark-cap">'+cap+"</span>";
+}
+
+var sp=WV_DATA.split, hhPct=sp.household/sp.official*100, gqPct=sp.groupQuarters/sp.official*100;
+document.getElementById("wv-split").innerHTML=
+ '<p class="wv-split-head">'+sp.official.toLocaleString()+' official residents; '+Math.round(gqPct)+'% live in the prison unit.</p>'+
+ '<div class="wv-bar" role="img" aria-label="'+sp.household+' household residents and '+sp.groupQuarters+' group quarters residents">'+
+ '<span class="wv-seg wv-seg-hh" style="width:'+hhPct.toFixed(2)+'%"></span><span class="wv-seg wv-seg-gq" style="width:'+gqPct.toFixed(2)+'%"></span></div>'+
+ '<div class="wv-keys"><div class="wv-key"><span class="wv-swatch" style="background:#4E6B4A"></span><b>'+sp.household+'</b><span>in households</span></div>'+
+ '<div class="wv-key"><span class="wv-swatch" style="background:#9AA9B1"></span><b>'+sp.groupQuarters+'</b><span>in group quarters (Department of Correction unit)</span></div>'+
+ '<div class="wv-key"><span>'+esc(sp.year)+'. Source: '+src("metro")+'</span></div></div>';
+
+var tabs=document.getElementById("wv-tabs"), panels=document.getElementById("wv-panels");
+WV_DATA.sections.forEach(function(sec,i){
+  var b=document.createElement("button");
+  b.className="wv-tab";b.type="button";b.id="wv-tab-"+sec.id;b.setAttribute("role","tab");
+  b.setAttribute("aria-controls","wv-p-"+sec.id);b.setAttribute("aria-selected",i===0?"true":"false");b.tabIndex=i===0?0:-1;
+  b.textContent=sec.tab;tabs.appendChild(b);
+  var h='<h2>'+esc(sec.title)+'</h2><p class="wv-lead">'+esc(sec.lead)+'</p>';
+  if(sec.rows){
+    var anySeries=sec.rows.some(function(r){return r.series;});
+    h+='<div class="wv-scroll"><table><thead><tr><th>Measure</th><th>Wrightsville city</th><th>Tract 40.05 (larger area)</th>'+(anySeries?'<th class="wv-trendcol">Change over time (city)</th>':'')+'<th>Status</th><th>Source</th></tr></thead><tbody>';
+    sec.rows.forEach(function(r){
+      var m=r.series&&WV_SERIES.measures[r.series], cityCell, tractCell, status=r.status, srcCell=r.src?src(r.src):"", extra="";
+      var cs=m&&cellFromSeries(m,"city"), ts=m&&cellFromSeries(m,"tract");
+      if(cs){cityCell='<td class="wv-num">'+cs.html+"</td>";status="verified";srcCell="Census API, "+esc(m.source)+(WV_SERIES.pulled?" (pulled "+esc(WV_SERIES.pulled)+")":"");}
+      else cityCell=r.city?'<td class="wv-num">'+esc(r.city)+"</td>":'<td class="wv-num wv-pend">Not yet pulled</td>';
+      if(ts)tractCell='<td class="wv-num">'+ts.html+"</td>";
+      else tractCell=r.tract?'<td class="wv-num">'+esc(r.tract)+"</td>":'<td class="wv-num wv-pend">'+(status==="pending"?"Not yet pulled":"Not applicable")+"</td>";
+      if(m&&m.city_vs_county)extra='<span class="wv-cmp">'+chip(m.city_vs_county==="different"?"diff":"nodiff",m.city_vs_county==="different"?"Differs from county":"Not different from county")+"</span>";
+      var note=r.note||"";
+      if(m&&m.note)note=note?note+". "+m.note:m.note;
+      h+='<tr><td>'+esc(r.label)+(note?'<span class="wv-note">'+esc(note)+'</span>':'')+'</td>'+cityCell+tractCell+
+        (anySeries?'<td class="wv-trend wv-trendcol">'+(m?spark(m):(r.series?'<span class="wv-spark-cap">After first pull</span>':''))+'</td>':'')+
+        '<td>'+chip(status)+extra+'</td><td>'+srcCell+'</td></tr>';
+    });
+    h+='</tbody></table></div>';
+  }
+  if(sec.timeline){
+    h+='<div class="wv-block"><h3>Timeline</h3><ol class="wv-time">';
+    sec.timeline.forEach(function(t){h+='<li><span class="wv-date">'+esc(t.date)+'</span>'+esc(t.text)+' '+src(t.src)+'</li>';});
+    h+='</ol></div>';
+  }
+  if(sec.items){
+    h+='<ul class="wv-list">';sec.items.forEach(function(t){h+='<li>'+esc(t.text)+' '+src(t.src)+'</li>';});h+='</ul>';
+  }
+  var p=document.createElement("div");p.className="wv-panel";p.id="wv-p-"+sec.id;p.setAttribute("role","tabpanel");
+  p.setAttribute("aria-labelledby","wv-tab-"+sec.id);p.hidden=i!==0;p.innerHTML=h;panels.appendChild(p);
+});
+function select(btn){
+  tabs.querySelectorAll(".wv-tab").forEach(function(t){var on=t===btn;t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1;
+    document.getElementById(t.getAttribute("aria-controls")).hidden=!on;});
+}
+tabs.addEventListener("click",function(e){var b=e.target.closest(".wv-tab");if(b)select(b);});
+tabs.addEventListener("keydown",function(e){
+  var list=[].slice.call(tabs.querySelectorAll(".wv-tab")),i=list.indexOf(document.activeElement);if(i<0)return;
+  var n=e.key==="ArrowRight"?i+1:e.key==="ArrowLeft"?i-1:e.key==="Home"?0:e.key==="End"?list.length-1:null;
+  if(n===null)return;e.preventDefault();n=(n+list.length)%list.length;list[n].focus();select(list[n]);
+});
+var sw=document.getElementById("wv-trendswitch"), root=document.getElementById("wv-dash");
+sw.addEventListener("click",function(){var on=sw.getAttribute("aria-pressed")!=="true";sw.setAttribute("aria-pressed",on?"true":"false");sw.textContent=on?"Shown":"Hidden";root.classList.toggle("wv-simple",!on);});
+
+/* Map */
+(function(){
+  var el=document.getElementById("wv-map"), fc=WV_SERIES.boundaries||{features:[]};
+  if(!fc.features||!fc.features.length||typeof L==="undefined"){
+    el.classList.add("wv-mapempty");
+    el.textContent=(typeof L==="undefined")?"The map library did not load. Check the page's script settings.":"Boundaries appear after the first data pull.";
+    return;
+  }
+  var map=L.map(el,{scrollWheelZoom:false});
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+  var styles={tract:{color:"#4E6B4A",weight:2.5,dashArray:"6 5",fillOpacity:0.04},city:{color:"#23465A",weight:2.5,fillColor:"#23465A",fillOpacity:0.28}};
+  function rank(f){return f.properties.role==="tract"?0:1;}
+  var order=fc.features.slice().sort(function(a,b){return rank(a)-rank(b);});
+  var tractLayer=null;
+  order.forEach(function(f){
+    var lyr=L.geoJSON(f,{style:styles[f.properties.role]||styles.city}).addTo(map);
+    lyr.bindTooltip(f.properties.role==="tract"?"Census tract 40.05":"Wrightsville city limits");
+    if(f.properties.role==="tract")tractLayer=lyr;
+  });
+  map.fitBounds((tractLayer||L.geoJSON(fc)).getBounds(),{padding:[12,12]});
+})();
+
+document.getElementById("wv-legend").innerHTML=
+ '<div class="wv-legend-row">'+chip("verified")+' Checked against an opened source or pulled from the Census API '+chip("supplied")+' From the project brief '+chip("inferred")+' Reasoned, to confirm '+chip("pending")+' Not yet pulled</div>'+
+ '<p>Survey figures show a likely range (90% margin of error). Values with a range above 30% of the estimate are withheld; 15% to 30% are marked "Use with caution." Trends compare only survey periods that do not overlap. Tract values cover a larger, more rural area than the city and include people in group quarters. '+(WV_SERIES.pulled?"Census data pulled "+esc(WV_SERIES.pulled)+". ":"")+'Data as of '+esc(WV_DATA.asOf)+'. '+esc(WV_DATA.credit)+'</p>';
+})();
+</script>
+</div>
